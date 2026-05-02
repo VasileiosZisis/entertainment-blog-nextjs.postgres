@@ -1,37 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Quick and Honest
 
-## Getting Started
+Quick and Honest is a Next.js rewrite of the original MERN demo blog. The new app is planned around Next.js App Router, TypeScript, Prisma, Neon PostgreSQL, Cloudinary uploads, and Vercel deployment.
 
-First, run the development server:
+## Current Status
+
+Milestone 1 is the scaffold and development foundation:
+
+- Next.js App Router
+- TypeScript
+- npm
+- Tailwind CSS
+- global theme tokens
+- baseline source folders
+- environment variable example
+- project checks
+
+Database, authentication, admin tools, and content features start in later milestones.
+
+## Requirements
+
+- Node.js compatible with Next.js 16
+- npm
+
+## Setup
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create a local environment file:
+
+```bash
+cp .env.example .env.local
+```
+
+The values can stay empty for Milestone 1. Database, auth, admin seed, and Cloudinary values are needed in later milestones.
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Run the standard milestone gate:
 
-## Learn More
+```bash
+npm run check
+```
 
-To learn more about Next.js, take a look at the following resources:
+This runs:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Other useful checks:
 
-## Deploy on Vercel
+```bash
+npm run audit
+npm run prisma:validate
+npm run prisma:format
+npm run prisma:migrate:status
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Prisma checks require a Prisma schema and database setup, which begin in Milestone 2.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# entertainment-blog-nextjs.postgres
+## Planning Docs
+
+Project planning lives in [docs/planning](./docs/planning):
+
+- decisions
+- architecture
+- milestones
+- task backlog
+- data/auth/content plan
+- deployment and environment plan

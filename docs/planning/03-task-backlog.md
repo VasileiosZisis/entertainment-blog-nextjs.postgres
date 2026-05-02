@@ -4,16 +4,16 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 
 ## Foundation
 
-- Use npm as the package manager.
-- Initialize Next.js project.
-- Add TypeScript strictness settings.
-- Add lint script.
-- Add format script if desired.
-- Add `.env.example`.
-- Add README setup instructions.
-- Add basic route groups.
-- Add shared constants for site name and base URL.
-- Set site name to "Quick and Honest".
+- [x] Use npm as the package manager.
+- [x] Initialize Next.js project.
+- [x] Add TypeScript strictness settings.
+- [x] Add lint script.
+- [ ] Add format script if desired.
+- [x] Add `.env.example`.
+- [x] Add README setup instructions.
+- [x] Add basic route groups.
+- [x] Add shared constants for site name and base URL.
+- [x] Set site name to "Quick and Honest".
 
 ## Design
 
