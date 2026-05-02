@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageShell } from "@/components/page-shell";
+import { CategoryPostsPage } from "@/features/posts/category-posts-page";
 
 export const metadata: Metadata = {
   title: "TV",
@@ -7,11 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function TvPage() {
-  return (
-    <PageShell
-      eyebrow="Category"
-      title="TV"
-      description="TV posts and quick reactions will be listed here once the category pages are backed by real queries."
-    />
-  );
+  return <CategoryPostsPage categorySlug="tv" page={1} />;
 }

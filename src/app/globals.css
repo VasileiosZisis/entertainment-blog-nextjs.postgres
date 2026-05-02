@@ -46,3 +46,41 @@ button {
   background: var(--accent);
   color: var(--accent-foreground);
 }
+
+.rich-text {
+  color: var(--foreground);
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+
+.rich-text p,
+.rich-text ul,
+.rich-text ol,
+.rich-text blockquote {
+  margin-block: 1.35rem;
+}
+
+.rich-text ul,
+.rich-text ol {
+  padding-left: 1.5rem;
+}
+
+.rich-text ul {
+  list-style: disc;
+}
+
+.rich-text ol {
+  list-style: decimal;
+}
+
+.rich-text blockquote {
+  border-left: 2px solid var(--accent);
+  color: var(--muted);
+  padding-left: 1rem;
+}
+
+.rich-text a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+}

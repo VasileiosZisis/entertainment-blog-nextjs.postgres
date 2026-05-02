@@ -106,28 +106,40 @@ Completion notes:
 
 ## Milestone 4: Public Blog Experience
 
-Status: next.
+Status: complete.
 
 Goal: implement read-only blog features.
 
 Tasks:
 
-- Build home page with latest posts.
-- Build upcoming/currently section.
-- Build blog index with pagination.
-- Build category pages with pagination.
-- Build search results.
-- Build article detail page using `/blog/[slug]`.
-- Add metadata for public pages.
-- Render rich text safely.
+- [x] Build home page with latest posts.
+- [x] Build upcoming/currently section.
+- [x] Build blog index with pagination.
+- [x] Build category pages with pagination.
+- [x] Build search results.
+- [x] Build article detail page using `/blog/[slug]`.
+- [x] Add metadata for public pages.
+- [x] Render rich text safely.
 
 Exit criteria:
 
-- Visitors can browse, search, filter, and read posts.
-- Article URLs use slugs.
-- Public pages have useful metadata.
+- [x] Visitors can browse, search, filter, and read posts.
+- [x] Article URLs use slugs.
+- [x] Public pages have useful metadata.
+
+Completion notes:
+
+- Added server-rendered Prisma queries for latest posts, paginated posts, category lists, search, and post details.
+- Added home latest posts and currently/upcoming sections.
+- Added post cards, grids, pagination, search form, upcoming cards, and rich text rendering.
+- Added route support for `/blog`, `/blog/page/[page]`, `/blog/search/[keyword]`, `/blog/search/[keyword]/page/[page]`, `/blog/[slug]`, and category pagination.
+- Configured `next/image` remote patterns for Unsplash and Cloudinary.
+- Verified old id-style URLs are not supported.
+- Verified `npm run check`.
 
 ## Milestone 5: Authentication
+
+Status: next.
 
 Goal: allow the owner/admin to log in securely.
 

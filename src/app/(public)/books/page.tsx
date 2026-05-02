@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageShell } from "@/components/page-shell";
+import { CategoryPostsPage } from "@/features/posts/category-posts-page";
 
 export const metadata: Metadata = {
   title: "Books",
@@ -7,11 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function BooksPage() {
-  return (
-    <PageShell
-      eyebrow="Category"
-      title="Books"
-      description="Book posts and concise reading notes will be listed here in the public blog milestone."
-    />
-  );
+  return <CategoryPostsPage categorySlug="books" page={1} />;
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageShell } from "@/components/page-shell";
+import { CategoryPostsPage } from "@/features/posts/category-posts-page";
 
 export const metadata: Metadata = {
   title: "Games",
@@ -7,11 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function GamesPage() {
-  return (
-    <PageShell
-      eyebrow="Category"
-      title="Games"
-      description="Game notes, reviews, and short verdicts will be listed here once the public blog experience is wired to Prisma."
-    />
-  );
+  return <CategoryPostsPage categorySlug="games" page={1} />;
 }

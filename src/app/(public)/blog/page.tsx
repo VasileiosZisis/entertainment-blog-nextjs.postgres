@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageShell } from "@/components/page-shell";
+import { BlogListPage } from "@/features/posts/blog-list-page";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -7,11 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-  return (
-    <PageShell
-      eyebrow="All posts"
-      title="Blog"
-      description="The full post index will live here, with search and pagination added in a later milestone."
-    />
-  );
+  return <BlogListPage page={1} />;
 }

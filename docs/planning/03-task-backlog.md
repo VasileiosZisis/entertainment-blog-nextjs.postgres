@@ -58,26 +58,26 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 
 ## Blog Queries
 
-- Query latest posts.
-- Query paginated posts.
-- Query posts by category.
-- Query posts by keyword.
-- Query post by slug.
+- [x] Query latest posts.
+- [x] Query paginated posts.
+- [x] Query posts by category.
+- [x] Query posts by keyword.
+- [x] Query post by slug.
 - Query post by id for admin editing.
-- Add pagination metadata helper.
+- [x] Add pagination metadata helper.
 - Add slug generation helper.
-- Do not implement old `/blog/:id` support.
+- [x] Do not implement old `/blog/:id` support.
 
 ## Public Pages
 
-- Home page.
-- Blog index page.
-- Blog search page.
-- Category pages.
-- Article page.
+- [x] Home page.
+- [x] Blog index page.
+- [x] Blog search page.
+- [x] Category pages.
+- [x] Article page.
 - Login page.
 - 404 page.
-- Do not build `/about` or `/contact` for v1.
+- [x] Do not build `/about` or `/contact` for v1.
 
 ## Admin Auth
 
@@ -117,11 +117,11 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 
 ## SEO And Metadata
 
-- Add site-wide metadata defaults.
-- Add home metadata.
-- Add blog metadata.
-- Add category metadata.
-- Add article metadata.
+- [x] Add site-wide metadata defaults.
+- [x] Add home metadata.
+- [x] Add blog metadata.
+- [x] Add category metadata.
+- [x] Add article metadata.
 - Add canonical URLs.
 - Add Open Graph images.
 - Add sitemap.
@@ -151,13 +151,13 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 
 ## Verification
 
-- Run lint.
-- Run type check.
-- Run build.
-- Test public navigation.
-- Test pagination.
-- Test search.
-- Test article metadata.
+- [x] Run lint.
+- [x] Run type check.
+- [x] Run build.
+- [x] Test public navigation.
+- [x] Test pagination.
+- [x] Test search.
+- [x] Test article metadata.
 - Test admin login/logout.
 - Test create/edit/delete post.
 - Test create/delete upcoming card.
