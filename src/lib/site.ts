@@ -9,3 +9,11 @@ export const SITE_URL =
 export const BLOG_CATEGORIES = ["games", "anime", "books", "tv"] as const;
 
 export type BlogCategorySlug = (typeof BLOG_CATEGORIES)[number];
+
+export const PUBLIC_NAV_ITEMS = [
+  { href: "/blog", label: "Blog" },
+  { href: "/games", label: "Games" },
+  { href: "/anime", label: "Anime" },
+  { href: "/books", label: "Books" },
+  { href: "/tv", label: "TV" },
+] as const;

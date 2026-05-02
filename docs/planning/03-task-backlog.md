@@ -17,17 +17,22 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 
 ## Design
 
-- Define brand direction.
+- [x] Define brand direction.
 - Keep "Quick and Honest" as the brand name.
-- Define color palette.
-- Define typography.
-- Define page width and spacing rules.
+- [x] Keep v1 light-only.
+- [x] Use Geist typography during milestone build.
+- Defer the deeper visual design pass until after functional milestones.
+- [x] Define color palette.
+- [x] Define typography.
+- [x] Define page width and spacing rules.
 - Use Tailwind CSS plus global CSS variables as the styling baseline.
 - Use CSS Modules only for complex custom component styling.
 - Use shadcn/ui selectively for admin/form primitives.
-- Build responsive header.
-- Build responsive navigation menu.
-- Build footer.
+- [x] Build responsive header.
+- [x] Build responsive navigation menu.
+- [x] Visible public nav links: Blog, Games, Anime, Books, TV.
+- [x] Do not include a visible login link.
+- [x] Build footer.
 - Build post card component.
 - Build upcoming card component.
 - Build pagination component.

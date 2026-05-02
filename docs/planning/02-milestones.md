@@ -71,26 +71,42 @@ Completion notes:
 
 ## Milestone 3: Public Site Shell
 
-Status: next.
+Status: complete.
 
 Goal: build the modern public layout and navigation.
 
 Tasks:
 
-- Create the main layout.
-- Build header/navigation.
-- Build footer.
-- Establish typography, spacing, colors, and responsive behavior.
-- Add empty route shells for the included public pages.
-- Exclude `/about` and `/contact` from v1.
+- [x] Create the main layout.
+- [x] Build header/navigation.
+- [x] Build footer.
+- [x] Use light-only styling for v1.
+- [x] Use Geist typography.
+- [x] Include visible nav links for Blog, Games, Anime, Books, and TV.
+- [x] Exclude a visible login link.
+- [x] Establish typography, spacing, colors, and responsive behavior.
+- [x] Add empty route shells for the included public pages.
+- [x] Exclude `/about` and `/contact` from v1.
 
 Exit criteria:
 
-- Public routes render without data dependencies.
-- Navigation works on desktop and mobile.
-- The visual direction is established.
+- [x] Public routes render without data dependencies.
+- [x] Navigation works on desktop and mobile.
+- [x] `/login` remains reachable manually but is not linked from the public shell.
+- [x] The visual direction is established.
+
+Completion notes:
+
+- Added shared public layout with header and footer.
+- Added responsive primary navigation and mobile menu.
+- Added route shells for `/blog`, `/games`, `/anime`, `/books`, `/tv`, and `/login`.
+- Verified `/login` is not linked from the public shell.
+- Verified public routes return `200`.
+- Verified `npm run check`.
 
 ## Milestone 4: Public Blog Experience
+
+Status: next.
 
 Goal: implement read-only blog features.
 

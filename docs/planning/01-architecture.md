@@ -18,6 +18,7 @@ This document describes the intended shape of the new Next.js, TypeScript, Prism
 - Rich text storage: sanitized HTML
 - Styling: Tailwind CSS for most component styling, global CSS variables for theme tokens, CSS Modules only where useful
 - UI primitives: selectively use shadcn/ui for accessible admin/form primitives
+- Typography: Geist for the milestone build
 
 ## App Structure
 
@@ -52,11 +53,20 @@ The exact structure can change once the app is scaffolded, but the goal is to ke
 ## Styling Strategy
 
 - Build the public site as a custom editorial UI for "Quick and Honest".
+- Keep v1 light-only.
+- Use Geist until the later visual design pass.
 - Use Tailwind CSS utility classes for layout, spacing, typography, responsive behavior, and common component styling.
 - Define theme tokens such as color, radius, shadows, and key spacing values with CSS variables in global CSS.
 - Use CSS Modules only for complex custom components where utilities become difficult to read.
 - Use shadcn/ui selectively for admin/forms primitives such as buttons, inputs, dialogs, dropdowns, and form controls.
 - Avoid making the public blog feel like a generic dashboard or component-library template.
+- Defer the deeper visual design pass until after the functional milestones are complete.
+
+## Public Navigation
+
+- Visible nav items: Blog, Games, Anime, Books, TV.
+- Do not show a login link in the public shell.
+- Keep `/login` available for manual URL entry.
 
 ## Data Model
 

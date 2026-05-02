@@ -1,26 +1,17 @@
-import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+import { SITE_DESCRIPTION } from "@/lib/site";
 
 const foundationItems = [
-  "Next.js App Router with TypeScript",
-  "Tailwind CSS with global theme tokens",
-  "Prisma and Neon planned for Milestone 2",
-  "Slug-first editorial routes planned for public posts",
+  "Public shell and navigation are in place",
+  "Neon and Prisma are ready for content queries",
+  "Blog lists and article pages follow in Milestone 4",
+  "Admin tools stay private while authentication is built",
 ];
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
-      <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-between px-6 py-8 sm:px-8 lg:px-10">
-        <header className="flex items-center justify-between gap-6">
-          <span className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-muted">
-            {SITE_NAME}
-          </span>
-          <span className="rounded-full border border-border px-3 py-1 text-xs font-medium text-muted">
-            Milestone 1
-          </span>
-        </header>
-
-        <div className="grid gap-12 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+    <main className="flex-1">
+      <section className="mx-auto flex w-full max-w-6xl flex-col px-6 py-16 sm:px-8 lg:px-10 lg:py-24">
+        <div className="grid min-h-[calc(100svh-16rem)] gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
           <div className="max-w-3xl">
             <p className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-accent">
               Entertainment blog rebuild
@@ -33,9 +24,9 @@ export default function Home() {
             </p>
           </div>
 
-          <aside className="border-l border-border pl-6">
+          <aside className="border-l border-border pl-6 lg:mb-3">
             <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-foreground">
-              Baseline includes
+              Current shell
             </h2>
             <ul className="mt-6 space-y-4">
               {foundationItems.map((item) => (
@@ -50,14 +41,6 @@ export default function Home() {
             </ul>
           </aside>
         </div>
-
-        <footer className="flex flex-col gap-2 border-t border-border pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-          <span>
-            Public blog, admin tools, and database work follow in later
-            milestones.
-          </span>
-          <span>Built for Vercel deployment.</span>
-        </footer>
       </section>
     </main>
   );

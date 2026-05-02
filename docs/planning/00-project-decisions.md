@@ -34,6 +34,11 @@ This document records the current product and technical decisions for the rewrit
 - Keep "Quick and Honest" as the brand name.
 - Keep categories as games, anime, books, and TV.
 - Keep the admin dashboard minimal for now.
+- Keep the public v1 design light-only.
+- Use Geist for typography during the milestone build.
+- Defer the deeper visual design pass until after the functional milestones.
+- Public navigation should include Blog, Games, Anime, Books, and TV.
+- Do not include a visible login link; `/login` is accessed manually by URL.
 - Add slug URLs now.
 - Do not support old `/blog/:id` URLs.
 - Use Neon for PostgreSQL.
@@ -86,6 +91,14 @@ Public routes:
 - `/tv`
 - `/tv/page/[page]`
 - `/login`
+
+Visible public navigation:
+
+- Blog
+- Games
+- Anime
+- Books
+- TV
 
 Admin routes:
 
