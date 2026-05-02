@@ -4,7 +4,7 @@ Quick and Honest is a Next.js rewrite of the original MERN demo blog. The new ap
 
 ## Current Status
 
-Milestone 1 is the scaffold and development foundation:
+Milestones 1 and 2 are complete:
 
 - Next.js App Router
 - TypeScript
@@ -14,8 +14,14 @@ Milestone 1 is the scaffold and development foundation:
 - baseline source folders
 - environment variable example
 - project checks
+- Prisma 7
+- Neon PostgreSQL datasource
+- initial migration
+- JavaScript seed script
+- realistic sample posts and upcoming cards
+- shared Prisma client helper
 
-Database, authentication, admin tools, and content features start in later milestones.
+Authentication UI, admin tools, and public content pages start in later milestones.
 
 ## Requirements
 
@@ -36,7 +42,7 @@ Create a local environment file:
 cp .env.example .env.local
 ```
 
-The values can stay empty for Milestone 1. Database, auth, admin seed, and Cloudinary values are needed in later milestones.
+Database and admin seed values are required for Prisma migration and seed scripts. Cloudinary values are needed in later milestones.
 
 Run the development server:
 
@@ -58,18 +64,23 @@ This runs:
 
 - `npm run lint`
 - `npm run typecheck`
+- `npm run format:check`
 - `npm run build`
 
 Other useful checks:
 
 ```bash
 npm run audit
+npm run prisma:generate
 npm run prisma:validate
 npm run prisma:format
+npm run prisma:migrate
 npm run prisma:migrate:status
+npm run prisma:seed
+npm run prisma:verify
 ```
 
-Prisma checks require a Prisma schema and database setup, which begin in Milestone 2.
+Prisma migration and seed commands use the `DATABASE_URL` and admin seed variables from `.env`.
 
 ## Planning Docs
 

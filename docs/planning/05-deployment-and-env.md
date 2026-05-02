@@ -22,7 +22,7 @@ ADMIN_EMAIL=
 ADMIN_PASSWORD=
 CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
+CLOUDINARY_SECRET=
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
@@ -36,7 +36,7 @@ ADMIN_EMAIL=
 ADMIN_PASSWORD=
 CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
+CLOUDINARY_SECRET=
 NEXT_PUBLIC_SITE_URL=https://your-domain.example
 ```
 
@@ -68,13 +68,16 @@ Expected scripts:
 npm run dev
 npm run lint
 npm run typecheck
+npm run format:check
 npm run build
 npm run prisma:generate
 npm run prisma:migrate
+npm run prisma:migrate:status
 npm run prisma:seed
+npm run prisma:verify
 ```
 
-The exact scripts will be finalized after scaffold.
+The migration and seed scripts should be run intentionally, not as part of normal app startup.
 
 Build considerations:
 
@@ -83,6 +86,7 @@ Build considerations:
 - Seed scripts should not run automatically in production builds.
 - The admin user should be seeded from a JavaScript script run intentionally with production environment variables.
 - Admin credentials must not be committed.
+- If Neon/pg warns about SSL mode semantics, prefer a connection URL that explicitly uses `sslmode=verify-full` when practical.
 
 ## Pre-Deployment Checklist
 

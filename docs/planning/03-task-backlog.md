@@ -8,7 +8,7 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 - [x] Initialize Next.js project.
 - [x] Add TypeScript strictness settings.
 - [x] Add lint script.
-- [ ] Add format script if desired.
+- [x] Add Prettier format script.
 - [x] Add `.env.example`.
 - [x] Add README setup instructions.
 - [x] Add basic route groups.
@@ -38,18 +38,18 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 
 ## Prisma And Database
 
-- Add Prisma dependencies.
-- Configure `prisma/schema.prisma`.
-- Create `User` model.
-- Create `BlogPost` model.
-- Create `Upcoming` model.
-- Create category enum.
-- Add indexes and unique constraints.
-- Create first migration.
-- Add seed script.
-- Seed the admin user from a JavaScript script.
-- Add local database setup instructions.
-- Add Prisma Client singleton/helper.
+- [x] Add Prisma dependencies.
+- [x] Configure `prisma/schema.prisma`.
+- [x] Create `User` model.
+- [x] Create `BlogPost` model.
+- [x] Create `Upcoming` model.
+- [x] Create category enum.
+- [x] Add indexes and unique constraints.
+- [x] Create first migration.
+- [x] Add seed script.
+- [x] Seed the admin user from a JavaScript script.
+- [x] Add local database setup instructions.
+- [x] Add Prisma Client singleton/helper.
 
 ## Blog Queries
 

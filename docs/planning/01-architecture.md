@@ -42,7 +42,7 @@ src/
   styles/
 prisma/
   schema.prisma
-  seed.ts
+  seed.js
 docs/
   planning/
 ```

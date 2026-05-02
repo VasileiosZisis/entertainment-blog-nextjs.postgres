@@ -38,28 +38,40 @@ Completion notes:
 
 ## Milestone 2: Database And Prisma
 
-Status: next.
+Status: complete.
 
 Goal: define and verify the PostgreSQL data layer.
 
 Tasks:
 
-- Install Prisma and Prisma Client.
-- Configure PostgreSQL datasource.
-- Create the initial Prisma schema.
-- Add models for users, blog posts, and upcoming cards.
-- Add migrations.
-- Add JavaScript seed script for one admin user and sample content.
-- Add a shared Prisma client helper.
-- Verify migration and seed locally.
+- [x] Install Prisma and Prisma Client.
+- [x] Configure PostgreSQL datasource.
+- [x] Create the initial Prisma schema.
+- [x] Add models for users, blog posts, and upcoming cards.
+- [x] Add migrations.
+- [x] Add JavaScript seed script for one admin user and sample content.
+- [x] Add a shared Prisma client helper.
+- [x] Verify migration and seed locally.
 
 Exit criteria:
 
-- The database can be migrated.
-- Seed data can be inserted.
-- Prisma Client can read seeded posts and upcoming cards.
+- [x] The database can be migrated.
+- [x] Seed data can be inserted.
+- [x] Prisma Client can read seeded posts and upcoming cards.
+
+Completion notes:
+
+- Added Prisma 7 configuration with the PostgreSQL adapter workflow.
+- Added the initial migration `20260502193305_init`.
+- Added `User`, `BlogPost`, `Upcoming`, `BlogCategory`, and `UpcomingKind`.
+- Required image alt text for blog posts and upcoming cards.
+- Seeded 1 admin user, 8 realistic sample posts, and 3 upcoming cards.
+- Verified migration status and Prisma read queries.
+- Added Prettier scripts and included `format:check` in `npm run check`.
 
 ## Milestone 3: Public Site Shell
+
+Status: next.
 
 Goal: build the modern public layout and navigation.
 

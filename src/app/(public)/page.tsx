@@ -52,7 +52,10 @@ export default function Home() {
         </div>
 
         <footer className="flex flex-col gap-2 border-t border-border pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-          <span>Public blog, admin tools, and database work follow in later milestones.</span>
+          <span>
+            Public blog, admin tools, and database work follow in later
+            milestones.
+          </span>
           <span>Built for Vercel deployment.</span>
         </footer>
       </section>

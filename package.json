@@ -8,26 +8,40 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "check": "npm run lint && npm run typecheck && npm run build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run lint && npm run typecheck && npm run format:check && npm run build",
     "audit": "npm audit",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
     "prisma:validate": "prisma validate",
     "prisma:format": "prisma format",
-    "prisma:migrate:status": "prisma migrate status"
+    "prisma:migrate:status": "prisma migrate status",
+    "prisma:seed": "prisma db seed",
+    "prisma:verify": "tsx prisma/verify.js"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.4.2",
     "next": "16.2.4",
+    "pg": "^8.20.0",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pg": "^8.20.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "prettier": "^3.8.3",
     "prisma": "^7.8.0",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
