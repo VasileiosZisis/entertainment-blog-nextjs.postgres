@@ -1,10 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CircleDot, LibraryBig } from "lucide-react";
+import type { CSSProperties } from "react";
+import { ArrowRight } from "lucide-react";
 import { getCategoryLabel } from "@/features/posts/categories";
 import { formatPostDate } from "@/features/posts/format";
 import type { PostListItem } from "@/features/posts/types";
-import { getLatestPosts } from "@/features/posts/queries";
+import {
+  getLatestPosts,
+  getLatestPostsByCategoryGroups,
+} from "@/features/posts/queries";
 import { getUpcomingKindLabel } from "@/features/upcoming/kinds";
 import { getUpcomingCards } from "@/features/upcoming/queries";
 import {
@@ -15,102 +19,89 @@ import {
 
 type UpcomingItem = Awaited<ReturnType<typeof getUpcomingCards>>[number];
 
-function FeaturedPost({ post }: { post: PostListItem }) {
+function HeroEntry({ post }: { post: PostListItem }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group grid grid-cols-[5.25rem_1fr] gap-4 border-t border-background/20 pt-5 text-background transition-colors hover:text-accent-foreground sm:grid-cols-[8rem_1fr]"
+      className="group border-t border-background/20 py-4 text-background transition-colors hover:text-accent-foreground md:border-l md:border-t-0 md:px-5 md:first:border-l-0 md:first:pl-0 md:last:pr-0"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-background/10">
-        <Image
-          src={post.imageUrl}
-          alt={post.imageAlt}
-          fill
-          priority
-          sizes="128px"
-          className="object-cover opacity-90 transition duration-500 group-hover:scale-[1.04]"
-        />
+      <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-background/60">
+        <span>{getCategoryLabel(post.category)}</span>
+        <span aria-hidden="true">/</span>
+        <time dateTime={post.createdAt.toISOString()}>
+          {formatPostDate(post.createdAt)}
+        </time>
       </div>
-      <div>
-        <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-background/60">
-          <span>{getCategoryLabel(post.category)}</span>
-          <span aria-hidden="true">/</span>
-          <time dateTime={post.createdAt.toISOString()}>
-            {formatPostDate(post.createdAt)}
-          </time>
-        </div>
-        <h2 className="home-link-line mt-2 inline text-xl font-semibold leading-tight text-balance sm:mt-3 sm:text-2xl">
-          {post.title}
-        </h2>
-        <p className="mt-2 line-clamp-2 text-sm leading-6 text-background/70 sm:mt-3">
-          {post.subtitle}
-        </p>
-      </div>
+      <h2 className="home-link-line mt-2 inline text-lg font-semibold leading-tight text-balance xl:text-xl">
+        {post.title}
+      </h2>
+      <p className="mt-2 line-clamp-1 text-sm leading-6 text-background/70">
+        {post.subtitle}
+      </p>
     </Link>
   );
 }
 
 function CategoryRail() {
   return (
-    <nav aria-label="Featured categories" className="border-t border-border">
-      <ul className="mx-auto grid w-full max-w-7xl divide-y divide-border px-6 sm:px-8 md:grid-cols-4 md:divide-x md:divide-y-0 lg:px-10">
-        {PUBLIC_NAV_ITEMS.filter((item) => item.href !== "/blog").map(
-          (item, index) => {
-            const slug = item.href.slice(1) as keyof typeof CATEGORY_DETAILS;
-            const details = CATEGORY_DETAILS[slug];
+    <section className="border-t border-border" aria-labelledby="categories">
+      <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-16 sm:px-8 lg:grid-cols-[0.76fr_1.24fr] lg:px-10 lg:py-20">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-accent">
+            Featured categories
+          </p>
+          <h2
+            id="categories"
+            className="mt-4 max-w-md text-4xl font-semibold leading-tight text-balance text-foreground sm:text-5xl"
+          >
+            Four lanes. Same direct verdicts.
+          </h2>
+        </div>
 
-            return (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="group flex min-h-28 flex-col justify-between gap-4 py-5 transition-colors md:px-5 md:first:pl-0 md:last:pr-0"
+        <div className="grid border-t border-border sm:grid-cols-2">
+          {PUBLIC_NAV_ITEMS.filter((item) => item.href !== "/blog").map(
+            (item) => {
+              const slug = item.href.slice(1) as keyof typeof CATEGORY_DETAILS;
+              const details = CATEGORY_DETAILS[slug];
+
+              return (
+                <article
+                  key={item.href}
+                  className="border-b border-border py-7 sm:odd:border-r sm:odd:pr-7 sm:even:pl-7"
                 >
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="font-mono text-xs text-muted">
-                      0{index + 1}
-                    </span>
-                    <ArrowRight
-                      size={16}
-                      aria-hidden="true"
-                      className="text-muted transition-transform group-hover:translate-x-1 group-hover:text-accent"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-xl font-semibold text-foreground">
-                      {item.label}
-                    </p>
-                    <p className="mt-2 text-sm leading-6 text-muted">
-                      {details.description}
-                    </p>
-                  </div>
-                </Link>
-              </li>
-            );
-          },
-        )}
-      </ul>
-    </nav>
+                  <h3 className="text-2xl font-semibold text-foreground">
+                    {item.label}
+                  </h3>
+                  <p className="mt-3 max-w-sm text-sm leading-6 text-muted">
+                    {details.description}
+                  </p>
+                </article>
+              );
+            },
+          )}
+        </div>
+      </div>
+    </section>
   );
 }
 
-function CurrentItem({ item, index }: { item: UpcomingItem; index: number }) {
+function CurrentItem({ item }: { item: UpcomingItem }) {
   return (
-    <article className="group grid grid-cols-[4.5rem_1fr] gap-4 border-t border-border py-5 first:border-t-0 first:pt-0">
-      <div className="relative aspect-square overflow-hidden bg-surface">
+    <article className="upcoming-carousel-item shrink-0 bg-background pt-5">
+      <div className="relative aspect-[4/3] overflow-hidden bg-surface">
         <Image
           src={item.imageUrl}
           alt={item.imageAlt}
           fill
-          sizes="72px"
-          className="object-cover transition duration-500 group-hover:scale-[1.05]"
+          sizes="(max-width: 1024px) 82vw, 18rem"
+          className="object-cover"
         />
       </div>
-      <div className="min-w-0">
-        <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
-          <span className="font-mono">0{index + 1}</span>
-          <span>{getUpcomingKindLabel(item.kind)}</span>
-        </div>
-        <h3 className="mt-2 text-xl font-semibold leading-snug text-foreground">
+      <div className="mt-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+          {getUpcomingKindLabel(item.kind)}
+        </p>
+        <h3 className="mt-2 text-2xl font-semibold leading-tight text-balance text-foreground">
           {item.subtitle}
         </h3>
       </div>
@@ -118,41 +109,72 @@ function CurrentItem({ item, index }: { item: UpcomingItem; index: number }) {
   );
 }
 
-function PostRow({ post, index }: { post: PostListItem; index: number }) {
+function CurrentCarousel({ items }: { items: UpcomingItem[] }) {
+  if (items.length === 0) {
+    return (
+      <p className="mx-auto max-w-7xl border-t border-border px-6 pt-5 text-center text-sm text-muted sm:px-8 lg:px-10">
+        Nothing is queued right now.
+      </p>
+    );
+  }
+
+  const duration = Math.max(24, items.length * 7);
+  const itemsInView = Math.min(items.length, 4);
+  const carouselStyle = {
+    "--upcoming-carousel-duration": `${duration}s`,
+    "--upcoming-carousel-items-in-view": itemsInView,
+  } as CSSProperties;
+
+  return (
+    <div className="upcoming-carousel" style={carouselStyle}>
+      <div className="upcoming-carousel-track">
+        <div className="upcoming-carousel-group">
+          {items.map((item) => (
+            <CurrentItem key={item.id} item={item} />
+          ))}
+        </div>
+        <div className="upcoming-carousel-group" aria-hidden="true">
+          {items.map((item) => (
+            <CurrentItem key={`${item.id}-duplicate`} item={item} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PostRow({ post }: { post: PostListItem }) {
   return (
     <article className="group border-t border-border">
       <Link
         href={`/blog/${post.slug}`}
-        className="grid gap-5 py-6 transition-colors hover:bg-surface/70 sm:grid-cols-[3rem_7rem_1fr] lg:grid-cols-[4rem_9rem_1fr_8rem]"
+        className="grid gap-5 py-6 transition-colors hover:bg-surface/70 sm:grid-cols-[350px_1fr] xl:grid-cols-[350px_1fr_2rem]"
       >
-        <span className="font-mono text-xs text-muted">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-        <div className="relative aspect-square w-28 overflow-hidden bg-surface sm:w-auto">
+        <div className="relative h-[275px] w-full max-w-[350px] overflow-hidden bg-surface">
           <Image
             src={post.imageUrl}
             alt={post.imageAlt}
             fill
-            sizes="144px"
+            sizes="350px"
             className="object-cover transition duration-500 group-hover:scale-[1.04]"
           />
         </div>
         <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+          <div className="flex flex-wrap items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-muted">
             <span>{getCategoryLabel(post.category)}</span>
             <span aria-hidden="true">/</span>
             <time dateTime={post.createdAt.toISOString()}>
               {formatPostDate(post.createdAt)}
             </time>
           </div>
-          <h3 className="home-link-line mt-3 inline text-2xl font-semibold leading-tight text-balance text-foreground">
+          <h3 className="home-link-line mt-2 inline text-2xl font-semibold leading-tight text-balance text-foreground">
             {post.title}
           </h3>
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-muted">
+          <p className="mt-2 max-w-2xl text-base leading-6 text-muted">
             {post.subtitle}
           </p>
         </div>
-        <div className="hidden items-start justify-end lg:flex">
+        <div className="hidden items-start justify-end xl:flex">
           <ArrowRight
             size={18}
             aria-hidden="true"
@@ -164,14 +186,44 @@ function PostRow({ post, index }: { post: PostListItem; index: number }) {
   );
 }
 
+type CategoryPostGroup = Awaited<
+  ReturnType<typeof getLatestPostsByCategoryGroups>
+>[number];
+
+function CategoryPostLane({ group }: { group: CategoryPostGroup }) {
+  return (
+    <section aria-labelledby={`${group.slug}-latest`}>
+      <div>
+        <h3
+          id={`${group.slug}-latest`}
+          className="text-base font-semibold uppercase tracking-[0.22em] text-accent"
+        >
+          {group.label}
+        </h3>
+      </div>
+
+      <div className="mt-5">
+        {group.posts.length > 0 ? (
+          group.posts.map((post) => <PostRow key={post.id} post={post} />)
+        ) : (
+          <p className="border-t border-border py-6 text-base text-muted">
+            No posts yet.
+          </p>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export default async function Home() {
-  const [latestPosts, upcomingCards] = await Promise.all([
+  const [latestPosts, upcomingCards, categoryPostGroups] = await Promise.all([
     getLatestPosts(LATEST_POSTS_LIMIT),
     getUpcomingCards(),
+    getLatestPostsByCategoryGroups(2),
   ]);
 
   const featuredPost = latestPosts[0];
-  const recentPosts = latestPosts.slice(1);
+  const heroPosts = latestPosts.slice(0, 3);
 
   return (
     <main className="flex-1 overflow-hidden">
@@ -200,85 +252,44 @@ export default async function Home() {
               Fast, focused notes for entertainment worth tracking. Clear
               structure, direct opinions, and no recap fog.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3 sm:mt-9">
-              <Link
-                href="/blog"
-                className="inline-flex items-center gap-2 bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-              >
-                Open the index
-                <ArrowRight size={16} aria-hidden="true" />
-              </Link>
-              <Link
-                href={featuredPost ? `/blog/${featuredPost.slug}` : "/blog"}
-                className="inline-flex items-center gap-2 border border-background/30 px-5 py-3 text-sm font-semibold text-background transition-colors hover:border-background hover:bg-background/10"
-              >
-                Latest entry
-                <CircleDot size={15} aria-hidden="true" />
-              </Link>
-            </div>
           </div>
 
-          <div className="home-reveal-delay grid gap-6 border-t border-background/20 py-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-background/50">
-                Personal entertainment workspace
-              </p>
-              <div className="mt-4 grid grid-cols-3 gap-4 text-sm">
-                <div>
-                  <p className="text-3xl font-semibold">
-                    {latestPosts.length.toString().padStart(2, "0")}
-                  </p>
-                  <p className="mt-1 text-background/55">recent posts</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-semibold">
-                    {upcomingCards.length.toString().padStart(2, "0")}
-                  </p>
-                  <p className="mt-1 text-background/55">active queue</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-semibold">04</p>
-                  <p className="mt-1 text-background/55">categories</p>
-                </div>
-              </div>
+          <div className="home-reveal-delay py-5">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-background/50">
+              Latest entries
+            </p>
+            <div className="mt-4 grid md:grid-cols-3">
+              {heroPosts.map((post) => (
+                <HeroEntry key={post.id} post={post} />
+              ))}
             </div>
-            {featuredPost ? <FeaturedPost post={featuredPost} /> : null}
           </div>
         </div>
       </section>
 
       <CategoryRail />
 
-      <section className="mx-auto grid w-full max-w-7xl gap-12 px-6 py-16 sm:px-8 lg:grid-cols-[0.76fr_1.24fr] lg:px-10 lg:py-24">
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-            <LibraryBig size={18} aria-hidden="true" />
+      <section className="py-16 lg:py-16">
+        <div className="mx-auto max-w-3xl px-6 text-center sm:px-8">
+          <div className="text-sm font-semibold uppercase tracking-[0.22em] text-accent">
             Currently
           </div>
-          <h2 className="mt-4 max-w-md text-4xl font-semibold leading-tight text-balance text-foreground sm:text-5xl">
+          <h2 className="mt-4 text-4xl font-semibold leading-tight text-balance text-foreground sm:text-5xl">
             The live queue behind the next notes.
           </h2>
-          <p className="mt-5 max-w-md text-base leading-7 text-muted">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-muted">
             A compact view of what is being read, watched, or played before it
             becomes a full entry.
           </p>
         </div>
 
-        <div>
-          {upcomingCards.length > 0 ? (
-            upcomingCards.map((item, index) => (
-              <CurrentItem key={item.id} item={item} index={index} />
-            ))
-          ) : (
-            <p className="border-t border-border pt-5 text-sm text-muted">
-              Nothing is queued right now.
-            </p>
-          )}
+        <div className="mt-12">
+          <CurrentCarousel items={upcomingCards} />
         </div>
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-6 pb-16 sm:px-8 lg:px-10 lg:pb-24">
-        <div className="grid gap-8 border-t border-border pt-10 lg:grid-cols-[0.76fr_1.24fr]">
+        <div className="grid gap-8 pt-10 lg:grid-cols-[0.76fr_1.24fr]">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-accent">
               Recently filed
@@ -286,31 +297,19 @@ export default async function Home() {
             <h2 className="mt-4 max-w-md text-4xl font-semibold leading-tight text-balance text-foreground sm:text-5xl">
               Notes with product shape, not template noise.
             </h2>
-          </div>
-          <div className="flex items-start justify-between gap-6">
-            <p className="max-w-md text-base leading-7 text-muted">
-              Short reads organized for scanning first and reading second.
-            </p>
             <Link
               href="/blog"
-              className="hidden shrink-0 items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-accent sm:inline-flex"
+              className="mt-6 inline-flex bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent"
             >
-              View all
-              <ArrowRight size={16} aria-hidden="true" />
+              View all posts
             </Link>
           </div>
         </div>
 
-        <div className="mt-8">
-          {recentPosts.length > 0 ? (
-            recentPosts.map((post, index) => (
-              <PostRow key={post.id} post={post} index={index} />
-            ))
-          ) : (
-            <p className="border-t border-border pt-6 text-sm text-muted">
-              No recent posts are published yet.
-            </p>
-          )}
+        <div className="mt-10 grid gap-14">
+          {categoryPostGroups.map((group) => (
+            <CategoryPostLane key={group.slug} group={group} />
+          ))}
         </div>
       </section>
     </main>

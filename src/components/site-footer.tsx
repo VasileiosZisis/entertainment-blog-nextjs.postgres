@@ -32,9 +32,20 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <p className="border-t border-border pt-5">
-          &copy; {new Date().getFullYear()} {SITE_NAME}
-        </p>
+        <div className="flex flex-col gap-3 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            &copy; {new Date().getFullYear()} {SITE_NAME}
+          </p>
+          <p>
+            Created by{" "}
+            <Link
+              href="https://www.vasiliszisis.me/"
+              className="font-medium text-foreground transition-colors hover:text-accent"
+            >
+              Vasilis Zisis
+            </Link>
+          </p>
+        </div>
       </div>
     </footer>
   );

@@ -2,6 +2,7 @@ import { cache } from "react";
 import type { BlogCategory } from "@/generated/prisma/enums";
 import { POSTS_PER_PAGE } from "@/lib/site";
 import { prisma } from "@/lib/db/prisma";
+import { CATEGORY_CONFIGS } from "./categories";
 import type { PaginatedPosts, PostDetail, PostListItem } from "./types";
 
 const postListSelect = {
@@ -46,6 +47,30 @@ export const getLatestPosts = cache(
     });
   },
 );
+
+export const getLatestPostsByCategoryGroups = cache(async (limit: number) => {
+  return Promise.all(
+    Object.values(CATEGORY_CONFIGS).map(async (category) => {
+      const posts = await prisma.blogPost.findMany({
+        where: {
+          published: true,
+          category: category.prismaCategory,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+        take: limit,
+        select: postListSelect,
+      });
+
+      return {
+        slug: category.slug,
+        label: category.label,
+        posts,
+      };
+    }),
+  );
+});
 
 export const getPaginatedPosts = cache(
   async (page: number): Promise<PaginatedPosts> => {

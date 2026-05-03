@@ -32,10 +32,10 @@ The homepage now defines these reusable patterns:
 
 - Full-viewport hero with a real content image as the visual anchor.
 - Brand-first hierarchy with `Quick and Honest` as the loudest first-screen text.
-- Compact status metrics for recent posts, active queue, and categories.
+- Compact latest-entry index inside the hero.
 - Category rail instead of a generic card grid.
-- Currently section presented as an active queue.
-- Recent posts presented as an indexed list instead of stacked blog cards.
+- Currently section presented as a centered intro with an infinite carousel.
+- Article previews grouped by category, with up to two latest posts per category.
 
 ## Typography
 
@@ -63,13 +63,14 @@ Use motion sparingly:
 
 - Hero text enters with a short reveal.
 - Hero image has a slow ambient scale.
+- Currently carousel scrolls continuously and includes every upcoming entry.
 - Rows and links use small hover movement and underline reveals.
 
 Future pages should reuse these motion rules instead of adding unrelated animations.
 
 ## Rules For Future Pages
 
-- Prefer indexed rows, rails, and structured sections over generic blog cards.
+- Prefer category lanes, rails, and structured sections over generic blog cards.
 - Use images as content, not decoration.
 - Keep cards rare; use borders, spacing, and layout first.
 - Keep copy short and operational.
