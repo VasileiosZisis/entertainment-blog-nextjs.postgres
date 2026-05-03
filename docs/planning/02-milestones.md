@@ -214,20 +214,36 @@ Completion notes:
 
 ## Milestone 7: Admin Upcoming Management
 
+Status: implementation complete.
+
 Goal: allow the admin to manage upcoming/currently cards.
 
 Tasks:
 
-- Build upcoming cards admin list.
-- Build new upcoming card form.
-- Add Cloudinary upload.
-- Add delete flow.
-- Add validation for allowed card types.
+- [x] Build upcoming cards admin list.
+- [x] Build new upcoming card form.
+- [x] Add Cloudinary upload.
+- [x] Add delete flow.
+- [x] Add validation for allowed card types.
 
 Exit criteria:
 
-- Admin can create and delete upcoming cards.
-- Public home page reflects the changes.
+- [x] Admin can create and delete upcoming cards.
+- [x] Public home page reflects the changes.
+
+Completion notes:
+
+- Added `/admin/upcoming` with current upcoming cards and a create form.
+- Added upcoming card validation for type, subtitle, image, and required alt text.
+- Added Cloudinary upload support for upcoming images.
+- Added delete flow with confirmation and best-effort Cloudinary cleanup.
+- Reused shared upcoming kind labels across public and admin UI.
+- Added Upcoming to the admin navigation and dashboard.
+- Revalidates the home page after create/delete.
+- Verified anonymous `/admin/upcoming` redirects to login.
+- Verified authenticated `/admin/upcoming` renders the list and form.
+- Verified `npm run check`.
+- Live Cloudinary create/delete smoke testing is left for manual review to avoid creating and deleting remote assets without an explicit test run.
 
 ## Milestone 8: Production Readiness
 

@@ -32,7 +32,10 @@ function configureCloudinary() {
   configured = true;
 }
 
-export async function uploadBlogImage(file: File): Promise<UploadedImage> {
+async function uploadImage(
+  file: File,
+  folder: "blog" | "upcoming",
+): Promise<UploadedImage> {
   configureCloudinary();
 
   const buffer = Buffer.from(await file.arrayBuffer());
@@ -40,7 +43,7 @@ export async function uploadBlogImage(file: File): Promise<UploadedImage> {
   const dataUri = `data:${file.type};base64,${base64}`;
 
   const result = (await cloudinary.uploader.upload(dataUri, {
-    folder: "quick-and-honest/blog",
+    folder: `quick-and-honest/${folder}`,
     resource_type: "image",
   })) as UploadApiResponse;
 
@@ -48,6 +51,14 @@ export async function uploadBlogImage(file: File): Promise<UploadedImage> {
     secureUrl: result.secure_url,
     publicId: result.public_id,
   };
+}
+
+export async function uploadBlogImage(file: File): Promise<UploadedImage> {
+  return uploadImage(file, "blog");
+}
+
+export async function uploadUpcomingImage(file: File): Promise<UploadedImage> {
+  return uploadImage(file, "upcoming");
 }
 
 export async function deleteCloudinaryImage(publicId: string) {

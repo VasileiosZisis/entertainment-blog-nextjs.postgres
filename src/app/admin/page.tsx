@@ -25,6 +25,19 @@ export default function AdminPage() {
           Create posts, edit existing drafts, replace images, and remove posts.
         </p>
       </div>
+
+      <div className="border-b border-border py-6">
+        <Link
+          href="/admin/upcoming"
+          className="inline-flex items-center gap-2 text-lg font-semibold text-foreground transition-colors hover:text-accent"
+        >
+          Manage upcoming cards
+          <ArrowRight size={18} aria-hidden="true" />
+        </Link>
+        <p className="mt-2 max-w-xl text-sm leading-6 text-muted">
+          Add and remove Reading, Watching, and Playing cards for the home page.
+        </p>
+      </div>
     </section>
   );
 }

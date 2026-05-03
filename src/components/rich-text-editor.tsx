@@ -34,6 +34,8 @@ const editorExtensions = [
     heading: {
       levels: [2, 3],
     },
+    link: false,
+    underline: false,
   }),
   Underline,
   LinkExtension.configure({

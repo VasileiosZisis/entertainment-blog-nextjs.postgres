@@ -107,13 +107,13 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 
 ## Upcoming Admin
 
-- Add admin upcoming list.
-- Add create upcoming form.
-- Add delete upcoming action.
-- Add validation for title values.
-- Add image upload flow.
-- Require image alt text.
-- Add Cloudinary cleanup on delete.
+- [x] Add admin upcoming list.
+- [x] Add create upcoming form.
+- [x] Add delete upcoming action.
+- [x] Add validation for title values.
+- [x] Add image upload flow.
+- [x] Require image alt text.
+- [x] Add Cloudinary cleanup on delete.
 
 ## SEO And Metadata
 
@@ -160,6 +160,6 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 - [x] Test article metadata.
 - [x] Test admin login/logout.
 - Test create/edit/delete post with a real Cloudinary upload.
-- Test create/delete upcoming card.
-- Test Cloudinary cleanup behavior.
+- Test create/delete upcoming card with a real Cloudinary upload.
+- Test Cloudinary cleanup behavior with real uploaded assets.
 - Test mobile layout.

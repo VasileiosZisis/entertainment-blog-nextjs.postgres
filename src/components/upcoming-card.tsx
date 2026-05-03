@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { UpcomingKind } from "@/generated/prisma/enums";
+import { getUpcomingKindLabel } from "@/features/upcoming/kinds";
 
 type UpcomingCardProps = {
   kind: UpcomingKind;
@@ -7,17 +8,6 @@ type UpcomingCardProps = {
   imageUrl: string;
   imageAlt: string;
 };
-
-function getKindLabel(kind: UpcomingKind) {
-  switch (kind) {
-    case "READING":
-      return "Reading";
-    case "WATCHING":
-      return "Watching";
-    case "PLAYING":
-      return "Playing";
-  }
-}
 
 export function UpcomingCard({
   kind,
@@ -38,7 +28,7 @@ export function UpcomingCard({
       </div>
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
-          {getKindLabel(kind)}
+          {getUpcomingKindLabel(kind)}
         </p>
         <h3 className="mt-2 text-lg font-semibold leading-snug text-foreground">
           {subtitle}

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { BookOpenText, LayoutDashboard, LogOut } from "lucide-react";
+import { BookOpenText, Clock3, LayoutDashboard, LogOut } from "lucide-react";
 import { logoutAction } from "@/features/auth/actions";
 import { getCurrentUser } from "@/lib/auth/session";
 
@@ -14,6 +14,11 @@ const adminNavItems = [
     href: "/admin/posts",
     label: "Posts",
     icon: BookOpenText,
+  },
+  {
+    href: "/admin/upcoming",
+    label: "Upcoming",
+    icon: Clock3,
   },
 ] as const;
 
