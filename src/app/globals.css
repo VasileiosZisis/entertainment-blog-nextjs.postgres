@@ -84,3 +84,51 @@ button {
   font-weight: 600;
   text-decoration: underline;
 }
+
+.ProseMirror p,
+.ProseMirror ul,
+.ProseMirror ol,
+.ProseMirror blockquote,
+.ProseMirror h2,
+.ProseMirror h3 {
+  margin-block: 1rem;
+}
+
+.ProseMirror h2,
+.ProseMirror h3 {
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5rem;
+}
+
+.ProseMirror h3 {
+  font-size: 1.25rem;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 1.5rem;
+}
+
+.ProseMirror ul {
+  list-style: disc;
+}
+
+.ProseMirror ol {
+  list-style: decimal;
+}
+
+.ProseMirror blockquote {
+  border-left: 2px solid var(--accent);
+  color: var(--muted);
+  padding-left: 1rem;
+}
+
+.ProseMirror a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+}

@@ -5,6 +5,8 @@ export function sanitizeRichText(html: string) {
     allowedTags: [
       "blockquote",
       "p",
+      "h2",
+      "h3",
       "a",
       "ul",
       "ol",
@@ -14,11 +16,20 @@ export function sanitizeRichText(html: string) {
       "em",
       "i",
       "strike",
+      "s",
       "u",
       "br",
     ],
     allowedAttributes: {
       a: ["href", "target", "rel"],
+      p: ["style"],
+      h2: ["style"],
+      h3: ["style"],
+    },
+    allowedStyles: {
+      "*": {
+        "text-align": [/^left$/, /^right$/, /^center$/],
+      },
     },
     transformTags: {
       a: sanitizeHtml.simpleTransform("a", {

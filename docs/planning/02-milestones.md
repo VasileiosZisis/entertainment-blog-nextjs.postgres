@@ -174,26 +174,43 @@ Completion notes:
 
 ## Milestone 6: Admin Blog Management
 
+Status: implementation complete.
+
 Goal: allow the admin to manage blog posts.
 
 Tasks:
 
-- Build admin dashboard shell.
-- Keep the dashboard minimal.
-- Build new post form.
-- Build edit post form.
-- Add client-only rich text editor.
-- Add server-side validation.
-- Add slug generation.
-- Add Cloudinary image upload.
-- Add post delete flow.
-- Add image replacement cleanup where practical.
+- [x] Build admin dashboard shell.
+- [x] Keep the dashboard minimal.
+- [x] Build new post form.
+- [x] Build edit post form.
+- [x] Add client-only rich text editor.
+- [x] Add server-side validation.
+- [x] Add slug generation.
+- [x] Add Cloudinary image upload.
+- [x] Add post delete flow.
+- [x] Add image replacement cleanup where practical.
 
 Exit criteria:
 
-- Admin can create, edit, and delete posts.
-- New posts appear on public pages.
-- Slugs are generated and unique.
+- [x] Admin can create, edit, and delete posts.
+- [x] New posts appear on public pages.
+- [x] Slugs are generated and unique.
+
+Completion notes:
+
+- Added minimal admin layout and post management routes.
+- Added `/admin/posts`, `/admin/posts/new`, and `/admin/posts/[id]/edit`.
+- Added TipTap as a client-only rich text editor.
+- Added Zod server-side validation for post fields and image rules.
+- Added Cloudinary server-side upload and best-effort image cleanup.
+- Added unique slug generation for new posts.
+- Added create, update, and delete Server Actions with admin checks.
+- Added confirmed delete flow for posts.
+- Increased Server Action body size limit for image uploads.
+- Verified admin post routes with an authenticated session.
+- Verified `npm run check`.
+- Live Cloudinary create/edit/delete smoke testing is left for manual review to avoid creating and deleting remote assets without an explicit test run.
 
 ## Milestone 7: Admin Upcoming Management
 

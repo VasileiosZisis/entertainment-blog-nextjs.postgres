@@ -39,7 +39,7 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 - Build empty state component.
 - Build loading state component.
 - [x] Build form controls.
-- Build admin layout.
+- [x] Build admin layout.
 
 ## Prisma And Database
 
@@ -63,9 +63,9 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 - [x] Query posts by category.
 - [x] Query posts by keyword.
 - [x] Query post by slug.
-- Query post by id for admin editing.
+- [x] Query post by id for admin editing.
 - [x] Add pagination metadata helper.
-- Add slug generation helper.
+- [x] Add slug generation helper.
 - [x] Do not implement old `/blog/:id` support.
 
 ## Public Pages
@@ -93,17 +93,17 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 
 ## Blog Admin
 
-- Add admin post list.
-- Add create post form.
-- Add edit post form.
-- Add delete post action.
-- Add rich text editor component.
-- Add form validation.
-- Add image upload flow.
-- Require image alt text.
-- Add image replacement flow.
-- Add Cloudinary cleanup on delete.
-- Add success and error UI.
+- [x] Add admin post list.
+- [x] Add create post form.
+- [x] Add edit post form.
+- [x] Add delete post action.
+- [x] Add rich text editor component.
+- [x] Add form validation.
+- [x] Add image upload flow.
+- [x] Require image alt text.
+- [x] Add image replacement flow.
+- [x] Add Cloudinary cleanup on delete.
+- [x] Add success and error UI.
 
 ## Upcoming Admin
 
@@ -129,10 +129,10 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 
 ## Security And Validation
 
-- Validate server inputs.
-- Sanitize rich text content.
-- Validate file MIME types.
-- Validate file sizes.
+- [x] Validate server inputs.
+- [x] Sanitize rich text content.
+- [x] Validate file MIME types.
+- [x] Validate file sizes.
 - [x] Use HTTP-only cookies.
 - [x] Use secure cookies in production.
 - [x] Avoid exposing admin-only data in public responses.
@@ -159,7 +159,7 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 - [x] Test search.
 - [x] Test article metadata.
 - [x] Test admin login/logout.
-- Test create/edit/delete post.
+- Test create/edit/delete post with a real Cloudinary upload.
 - Test create/delete upcoming card.
 - Test Cloudinary cleanup behavior.
 - Test mobile layout.
