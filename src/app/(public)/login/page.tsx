@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { PageShell } from "@/components/page-shell";
 import { LoginForm } from "@/components/login-form";
+import { getCurrentUser } from "@/lib/auth/session";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -27,7 +29,12 @@ function getSafeAdminRedirect(next: string | string[] | undefined) {
 }
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
-  const redirectTo = getSafeAdminRedirect((await searchParams).next);
+  const [{ next }, user] = await Promise.all([searchParams, getCurrentUser()]);
+  const redirectTo = getSafeAdminRedirect(next);
+
+  if (user) {
+    redirect(redirectTo ?? "/admin");
+  }
 
   return (
     <PageShell
