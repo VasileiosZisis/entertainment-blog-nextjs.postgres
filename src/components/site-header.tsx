@@ -15,11 +15,11 @@ export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-      <div className="mx-auto flex min-h-18 w-full max-w-6xl items-center justify-between gap-6 px-6 sm:px-8 lg:px-10">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/92 backdrop-blur">
+      <div className="mx-auto flex min-h-18 w-full max-w-7xl items-center justify-between gap-6 px-6 sm:px-8 lg:px-10">
         <Link
           href="/"
-          className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-foreground transition-colors hover:text-accent"
+          className="font-mono text-sm font-semibold uppercase tracking-[0.18em] text-foreground transition-colors hover:text-accent"
           onClick={() => setIsOpen(false)}
         >
           {SITE_NAME}
@@ -34,9 +34,9 @@ export function SiteHeader() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                    className={`px-4 py-2 text-sm font-medium transition-colors ${
                       isActive
-                        ? "bg-surface text-foreground"
+                        ? "bg-foreground text-background"
                         : "text-muted hover:bg-surface hover:text-foreground"
                     }`}
                   >
@@ -50,7 +50,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="inline-flex size-10 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:bg-surface md:hidden"
+          className="inline-flex size-10 items-center justify-center border border-border text-foreground transition-colors hover:bg-surface md:hidden"
           aria-label={isOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={isOpen}
           onClick={() => setIsOpen((value) => !value)}
@@ -65,7 +65,7 @@ export function SiteHeader() {
         }`}
       >
         <nav className="overflow-hidden" aria-label="Mobile navigation">
-          <ul className="mx-auto flex w-full max-w-6xl flex-col px-6 py-3 sm:px-8">
+          <ul className="mx-auto flex w-full max-w-7xl flex-col px-6 py-3 sm:px-8">
             {PUBLIC_NAV_ITEMS.map((item) => {
               const isActive = isActivePath(pathname, item.href);
 

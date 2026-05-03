@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fcfcfb;
-  --foreground: #171717;
-  --muted: #666461;
-  --border: #deddda;
-  --surface: #f2f2ef;
-  --accent: #b7352d;
-  --accent-foreground: #fff8f5;
+  --background: #f7f7f2;
+  --foreground: #121410;
+  --muted: #5f675f;
+  --border: #d9ddd3;
+  --surface: #ecefe7;
+  --accent: #c63f2c;
+  --accent-foreground: #fffaf5;
 }
 
 @theme inline {
@@ -30,6 +30,53 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.home-reveal {
+  animation: home-reveal 720ms ease-out both;
+}
+
+.home-reveal-delay {
+  animation: home-reveal 720ms ease-out 140ms both;
+}
+
+.home-hero-media {
+  animation: home-hero-media 18s ease-in-out infinite alternate;
+}
+
+.home-link-line {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size 180ms ease;
+}
+
+.group:hover .home-link-line,
+.home-link-line:hover {
+  background-size: 100% 1px;
+}
+
+@keyframes home-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes home-hero-media {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.06);
+  }
 }
 
 a,
