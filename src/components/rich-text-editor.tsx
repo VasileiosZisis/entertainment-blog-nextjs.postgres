@@ -3,8 +3,26 @@
 import LinkExtension from "@tiptap/extension-link";
 import TextAlign from "@tiptap/extension-text-align";
 import Underline from "@tiptap/extension-underline";
-import { EditorContent, useEditor } from "@tiptap/react";
+import { EditorContent, type Editor, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import {
+  AlignCenter,
+  AlignLeft,
+  AlignRight,
+  Bold,
+  CornerDownLeft,
+  Eraser,
+  Heading2,
+  Heading3,
+  Italic,
+  Link,
+  List,
+  ListOrdered,
+  Pilcrow,
+  Quote,
+  Strikethrough,
+  Underline as UnderlineIcon,
+} from "lucide-react";
 
 type RichTextEditorProps = {
   value: string;
@@ -56,82 +74,111 @@ export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
     <div>
       <div className="flex flex-wrap gap-2 border border-b-0 border-border bg-surface p-2">
         <ToolbarButton
-          active={editor.isActive("bold")}
-          onClick={() => editor.chain().focus().toggleBold().run()}
+          label="Paragraph"
+          active={editor.isActive("paragraph")}
+          onClick={() => applyParagraph(editor)}
         >
-          B
+          <Pilcrow size={16} aria-hidden="true" />
         </ToolbarButton>
         <ToolbarButton
-          active={editor.isActive("italic")}
-          onClick={() => editor.chain().focus().toggleItalic().run()}
-        >
-          I
-        </ToolbarButton>
-        <ToolbarButton
-          active={editor.isActive("underline")}
-          onClick={() => editor.chain().focus().toggleUnderline().run()}
-        >
-          U
-        </ToolbarButton>
-        <ToolbarButton
-          active={editor.isActive("strike")}
-          onClick={() => editor.chain().focus().toggleStrike().run()}
-        >
-          S
-        </ToolbarButton>
-        <ToolbarButton
+          label="Heading 2"
           active={editor.isActive("heading", { level: 2 })}
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 2 }).run()
           }
         >
-          H2
+          <Heading2 size={16} aria-hidden="true" />
         </ToolbarButton>
         <ToolbarButton
+          label="Heading 3"
           active={editor.isActive("heading", { level: 3 })}
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 3 }).run()
           }
         >
-          H3
+          <Heading3 size={16} aria-hidden="true" />
         </ToolbarButton>
         <ToolbarButton
+          label="Bold"
+          active={editor.isActive("bold")}
+          onClick={() => editor.chain().focus().toggleBold().run()}
+        >
+          <Bold size={16} aria-hidden="true" />
+        </ToolbarButton>
+        <ToolbarButton
+          label="Italic"
+          active={editor.isActive("italic")}
+          onClick={() => editor.chain().focus().toggleItalic().run()}
+        >
+          <Italic size={16} aria-hidden="true" />
+        </ToolbarButton>
+        <ToolbarButton
+          label="Underline"
+          active={editor.isActive("underline")}
+          onClick={() => editor.chain().focus().toggleUnderline().run()}
+        >
+          <UnderlineIcon size={16} aria-hidden="true" />
+        </ToolbarButton>
+        <ToolbarButton
+          label="Strikethrough"
+          active={editor.isActive("strike")}
+          onClick={() => editor.chain().focus().toggleStrike().run()}
+        >
+          <Strikethrough size={16} aria-hidden="true" />
+        </ToolbarButton>
+        <ToolbarButton
+          label="Bulleted list"
           active={editor.isActive("bulletList")}
           onClick={() => editor.chain().focus().toggleBulletList().run()}
         >
-          Bullets
+          <List size={16} aria-hidden="true" />
         </ToolbarButton>
         <ToolbarButton
+          label="Numbered list"
           active={editor.isActive("orderedList")}
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
         >
-          Numbers
+          <ListOrdered size={16} aria-hidden="true" />
         </ToolbarButton>
         <ToolbarButton
+          label="Blockquote"
           active={editor.isActive("blockquote")}
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
         >
-          Quote
+          <Quote size={16} aria-hidden="true" />
         </ToolbarButton>
         <ToolbarButton
+          label="Align left"
           active={editor.isActive({ textAlign: "left" })}
           onClick={() => editor.chain().focus().setTextAlign("left").run()}
         >
-          Left
+          <AlignLeft size={16} aria-hidden="true" />
         </ToolbarButton>
         <ToolbarButton
+          label="Align center"
           active={editor.isActive({ textAlign: "center" })}
           onClick={() => editor.chain().focus().setTextAlign("center").run()}
         >
-          Center
+          <AlignCenter size={16} aria-hidden="true" />
         </ToolbarButton>
         <ToolbarButton
+          label="Align right"
           active={editor.isActive({ textAlign: "right" })}
           onClick={() => editor.chain().focus().setTextAlign("right").run()}
         >
-          Right
+          <AlignRight size={16} aria-hidden="true" />
         </ToolbarButton>
         <ToolbarButton
+          label="New paragraph"
+          active={false}
+          onClick={() =>
+            editor.chain().focus().splitBlock().setParagraph().run()
+          }
+        >
+          <CornerDownLeft size={16} aria-hidden="true" />
+        </ToolbarButton>
+        <ToolbarButton
+          label="Link"
           active={editor.isActive("link")}
           onClick={() => {
             const previousUrl = editor.getAttributes("link").href as
@@ -151,15 +198,16 @@ export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
             editor.chain().focus().setLink({ href: url }).run();
           }}
         >
-          Link
+          <Link size={16} aria-hidden="true" />
         </ToolbarButton>
         <ToolbarButton
+          label="Clear formatting"
           active={false}
           onClick={() =>
             editor.chain().focus().unsetAllMarks().clearNodes().run()
           }
         >
-          Clear
+          <Eraser size={16} aria-hidden="true" />
         </ToolbarButton>
       </div>
 
@@ -168,11 +216,32 @@ export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
   );
 }
 
+function applyParagraph(editor: Editor) {
+  const { $from } = editor.state.selection;
+  const selectionIsEmpty = editor.state.selection.empty;
+  const cursorIsAtEndOfBlock = $from.parentOffset === $from.parent.content.size;
+  const currentBlockHasText = $from.parent.content.size > 0;
+
+  if (
+    selectionIsEmpty &&
+    !editor.isActive("paragraph") &&
+    currentBlockHasText &&
+    cursorIsAtEndOfBlock
+  ) {
+    editor.chain().focus().splitBlock().setParagraph().run();
+    return;
+  }
+
+  editor.chain().focus().setParagraph().run();
+}
+
 function ToolbarButton({
+  label,
   active,
   onClick,
   children,
 }: {
+  label: string;
   active: boolean;
   onClick: () => void;
   children: React.ReactNode;
@@ -180,9 +249,12 @@ function ToolbarButton({
   return (
     <button
       type="button"
+      aria-label={label}
       aria-pressed={active}
+      title={label}
+      onMouseDown={(event) => event.preventDefault()}
       onClick={onClick}
-      className={`min-h-9 rounded-full px-3 text-sm font-medium transition-colors ${
+      className={`inline-flex size-9 items-center justify-center rounded-full text-sm font-medium transition-colors ${
         active
           ? "bg-foreground text-background"
           : "border border-border text-foreground hover:border-foreground"
