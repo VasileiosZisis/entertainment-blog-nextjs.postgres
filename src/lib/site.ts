@@ -1,7 +1,7 @@
 export const SITE_NAME = "Quick and Honest";
 
 export const SITE_DESCRIPTION =
-  "A modern entertainment blog for quick, honest notes on games, anime, books, and TV.";
+  "Quick posts that help you decide what is worth watching, reading, or playing";
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -38,21 +38,22 @@ export const CATEGORY_DETAILS: Record<
   games: {
     label: "Games",
     title: "Games",
-    description: "Quick, honest notes on the games worth thinking about.",
+    description: "What is fun, what drags, and whether it is worth playing",
   },
   anime: {
     label: "Anime",
     title: "Anime",
-    description: "Short impressions on anime that stays with you.",
+    description:
+      "What hooks early, what holds up, and whether it is worth starting",
   },
   books: {
     label: "Books",
     title: "Books",
-    description: "Concise reading notes across fantasy, sci-fi, and beyond.",
+    description: "Short reading notes before you add another book to the list",
   },
   tv: {
     label: "TV",
     title: "TV",
-    description: "TV reactions and verdicts without the long recap.",
+    description: "No long recaps, just whether a show is worth your evenings",
   },
 };

@@ -15,16 +15,16 @@ Scope:
 
 ## Visual Thesis
 
-Quick and Honest should feel like a focused entertainment workspace: editorial enough for reviews, but structured like a web app. The surface should be direct, fast to scan, and more product-like than a typical WordPress-style blog.
+Quick and Honest should feel like a time-respecting entertainment blog: casual enough to read quickly, structured enough to help someone decide what deserves their evening. The surface should still feel more app-like than a typical WordPress-style blog, but the language should sound human, direct, and reader-first.
 
 The design language is based on the portfolio tone:
 
-- fast, focused web products
-- stable, usable web apps
-- direct interfaces
-- clear architecture
-- practical decisions
-- real product shape, not just screens
+- quick verdicts
+- honest tradeoffs
+- no long recaps
+- clear recommendations
+- respect for the reader's time
+- enough context to decide whether to watch, read, or play
 
 ## Homepage Structure
 
@@ -73,7 +73,7 @@ Future pages should reuse these motion rules instead of adding unrelated animati
 - Prefer category lanes, rails, and structured sections over generic blog cards.
 - Use images as content, not decoration.
 - Keep cards rare; use borders, spacing, and layout first.
-- Keep copy short and operational.
+- Keep copy short, casual, and useful.
 - Use the homepage category rail and post row language when redesigning `/blog` and category pages.
 - Article pages should inherit the same type scale, image treatment, and direct editorial tone.
 - Mobile layouts should preserve the same hierarchy rather than collapsing into a generic feed.

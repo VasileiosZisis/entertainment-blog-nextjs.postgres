@@ -11,8 +11,8 @@ export function SiteFooter() {
               {SITE_NAME}
             </p>
             <p className="mt-3 max-w-md leading-6">
-              Fast, focused notes on games, anime, books, and TV. Built for
-              direct reading, clear structure, and honest verdicts.
+              Quick thoughts on games, anime, books, and TV, written to help you
+              decide what is worth your time
             </p>
           </div>
 

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { ArrowRight } from "lucide-react";
 import { getCategoryLabel } from "@/features/posts/categories";
 import { formatPostDate } from "@/features/posts/format";
 import type { PostListItem } from "@/features/posts/types";
@@ -54,7 +53,7 @@ function CategoryRail() {
             id="categories"
             className="mt-4 max-w-md text-4xl font-semibold leading-tight text-balance text-foreground sm:text-5xl"
           >
-            Four lanes. Same direct verdicts.
+            Pick what you are in the mood for
           </h2>
         </div>
 
@@ -113,7 +112,7 @@ function CurrentCarousel({ items }: { items: UpcomingItem[] }) {
   if (items.length === 0) {
     return (
       <p className="mx-auto max-w-7xl border-t border-border px-6 pt-5 text-center text-sm text-muted sm:px-8 lg:px-10">
-        Nothing is queued right now.
+        Nothing is queued right now
       </p>
     );
   }
@@ -148,7 +147,7 @@ function PostRow({ post }: { post: PostListItem }) {
     <article className="group border-t border-border">
       <Link
         href={`/blog/${post.slug}`}
-        className="grid gap-5 py-6 transition-colors hover:bg-surface/70 sm:grid-cols-[350px_1fr] xl:grid-cols-[350px_1fr_2rem]"
+        className="grid gap-5 py-6 transition-colors hover:bg-surface/70 sm:grid-cols-[350px_1fr]"
       >
         <div className="relative h-[275px] w-full max-w-[350px] overflow-hidden bg-surface">
           <Image
@@ -173,13 +172,6 @@ function PostRow({ post }: { post: PostListItem }) {
           <p className="mt-2 max-w-2xl text-base leading-6 text-muted">
             {post.subtitle}
           </p>
-        </div>
-        <div className="hidden items-start justify-end xl:flex">
-          <ArrowRight
-            size={18}
-            aria-hidden="true"
-            className="mt-1 text-muted transition-transform group-hover:translate-x-1 group-hover:text-accent"
-          />
         </div>
       </Link>
     </article>
@@ -207,7 +199,7 @@ function CategoryPostLane({ group }: { group: CategoryPostGroup }) {
           group.posts.map((post) => <PostRow key={post.id} post={post} />)
         ) : (
           <p className="border-t border-border py-6 text-base text-muted">
-            No posts yet.
+            No posts yet
           </p>
         )}
       </div>
@@ -249,8 +241,8 @@ export default async function Home() {
               Quick and Honest
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-background/78 sm:text-xl sm:leading-9">
-              Fast, focused notes for entertainment worth tracking. Clear
-              structure, direct opinions, and no recap fog.
+              Short posts that get to the point: what it is, what works, what
+              does not, and whether it deserves your time
             </p>
           </div>
 
@@ -275,11 +267,11 @@ export default async function Home() {
             Currently
           </div>
           <h2 className="mt-4 text-4xl font-semibold leading-tight text-balance text-foreground sm:text-5xl">
-            The live queue behind the next notes.
+            What I am trying next
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-muted">
-            A compact view of what is being read, watched, or played before it
-            becomes a full entry.
+            The things on my shelf, watchlist, or playlist before they turn into
+            a quick verdict
           </p>
         </div>
 
@@ -292,10 +284,10 @@ export default async function Home() {
         <div className="grid gap-8 pt-10 lg:grid-cols-[0.76fr_1.24fr]">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-accent">
-              Recently filed
+              Latest verdicts
             </p>
             <h2 className="mt-4 max-w-md text-4xl font-semibold leading-tight text-balance text-foreground sm:text-5xl">
-              Notes with product shape, not template noise.
+              Should you watch, read, or play it?
             </h2>
             <Link
               href="/blog"
@@ -310,6 +302,15 @@ export default async function Home() {
           {categoryPostGroups.map((group) => (
             <CategoryPostLane key={group.slug} group={group} />
           ))}
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/blog"
+            className="inline-flex bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent"
+          >
+            View all posts
+          </Link>
         </div>
       </section>
     </main>
