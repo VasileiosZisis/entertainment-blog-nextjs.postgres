@@ -4,7 +4,7 @@ Quick and Honest is a Next.js rewrite of the original MERN demo blog. The new ap
 
 ## Current Status
 
-Milestones 1 and 2 are complete:
+Milestones 1 through 8 are complete:
 
 - Next.js App Router
 - TypeScript
@@ -20,8 +20,14 @@ Milestones 1 and 2 are complete:
 - JavaScript seed script
 - realistic sample posts and upcoming cards
 - shared Prisma client helper
-
-Authentication UI, admin tools, and public content pages start in later milestones.
+- public blog, category, search, and article pages
+- cookie-based admin auth
+- admin post management
+- admin upcoming-card management
+- Cloudinary upload and cleanup flows
+- sitemap and robots metadata routes
+- production error and not-found states
+- baseline security headers
 
 ## Requirements
 
@@ -39,10 +45,17 @@ npm install
 Create a local environment file:
 
 ```bash
-cp .env.example .env.local
+cp .env.example .env
 ```
 
-Database and admin seed values are required for Prisma migration and seed scripts. Cloudinary values are needed in later milestones.
+Database, admin seed, JWT, and Cloudinary values are required for local development.
+
+Run database migrations and seed local content:
+
+```bash
+npm run prisma:migrate
+npm run prisma:seed
+```
 
 Run the development server:
 
@@ -75,12 +88,49 @@ npm run prisma:generate
 npm run prisma:validate
 npm run prisma:format
 npm run prisma:migrate
+npm run prisma:migrate:deploy
 npm run prisma:migrate:status
 npm run prisma:seed
 npm run prisma:verify
 ```
 
 Prisma migration and seed commands use the `DATABASE_URL` and admin seed variables from `.env`.
+
+## Deployment
+
+Production target:
+
+- Vercel for hosting
+- Neon PostgreSQL for the database
+- Cloudinary for uploaded images
+- `https://www.quickandhonest.com` as the production site URL
+
+Set these Vercel environment variables before deploying:
+
+```text
+DATABASE_URL=
+JWT_SECRET=
+ADMIN_NAME=
+ADMIN_EMAIL=
+ADMIN_PASSWORD=
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_SECRET=
+NEXT_PUBLIC_SITE_URL=https://www.quickandhonest.com
+```
+
+Use the default Vercel build command:
+
+```bash
+npm run build
+```
+
+The build script runs `prisma generate` before `next build`. Database migrations and production admin seeding should be run intentionally, not automatically during the Vercel build:
+
+```bash
+npm run prisma:migrate:deploy
+npm run prisma:seed
+```
 
 ## Planning Docs
 

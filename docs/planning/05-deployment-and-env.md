@@ -9,6 +9,7 @@ This document tracks deployment and environment setup for Vercel.
 - Database: Neon PostgreSQL
 - ORM: Prisma
 - Media: Cloudinary
+- Production domain: `https://www.quickandhonest.com/`
 
 ## Required Environment Variables
 
@@ -37,7 +38,7 @@ ADMIN_PASSWORD=
 CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
 CLOUDINARY_SECRET=
-NEXT_PUBLIC_SITE_URL=https://your-domain.example
+NEXT_PUBLIC_SITE_URL=https://www.quickandhonest.com
 ```
 
 Optional:
@@ -72,6 +73,7 @@ npm run format:check
 npm run build
 npm run prisma:generate
 npm run prisma:migrate
+npm run prisma:migrate:deploy
 npm run prisma:migrate:status
 npm run prisma:seed
 npm run prisma:verify
@@ -81,19 +83,31 @@ The migration and seed scripts should be run intentionally, not as part of norma
 
 Build considerations:
 
-- Prisma Client must be generated before or during build.
+- Prisma Client is generated during `npm run build`.
 - Migrations should be applied intentionally, not hidden inside normal app startup.
 - Seed scripts should not run automatically in production builds.
 - The admin user should be seeded from a JavaScript script run intentionally with production environment variables.
 - Admin credentials must not be committed.
 - If Neon/pg warns about SSL mode semantics, prefer a connection URL that explicitly uses `sslmode=verify-full` when practical.
 
+Vercel build command:
+
+```text
+npm run build
+```
+
+Production migration command:
+
+```text
+npm run prisma:migrate:deploy
+```
+
 ## Pre-Deployment Checklist
 
 - Set production `DATABASE_URL`.
 - Set production `JWT_SECRET`.
 - Set Cloudinary variables.
-- Set production `NEXT_PUBLIC_SITE_URL`.
+- Set production `NEXT_PUBLIC_SITE_URL` to `https://www.quickandhonest.com`.
 - Run database migration.
 - Create production admin user by running the JavaScript seed script against Neon.
 - Run production build locally.
@@ -103,6 +117,9 @@ Build considerations:
 - Verify article creation.
 - Verify article slug URL.
 - Verify metadata and social preview basics.
+- Verify `/sitemap.xml`.
+- Verify `/robots.txt`.
+- Verify an unknown path renders the 404 page.
 
 ## Post-Deployment Checklist
 

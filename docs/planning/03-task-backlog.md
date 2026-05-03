@@ -76,7 +76,7 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 - [x] Category pages.
 - [x] Article page.
 - [x] Login page.
-- 404 page.
+- [x] 404 page.
 - [x] Do not build `/about` or `/contact` for v1.
 
 ## Admin Auth
@@ -122,10 +122,10 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 - [x] Add blog metadata.
 - [x] Add category metadata.
 - [x] Add article metadata.
-- Add canonical URLs.
+- [x] Add canonical URLs.
 - Add Open Graph images.
-- Add sitemap.
-- Add robots.
+- [x] Add sitemap.
+- [x] Add robots.
 
 ## Security And Validation
 
@@ -137,17 +137,18 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 - [x] Use secure cookies in production.
 - [x] Avoid exposing admin-only data in public responses.
 - [x] Handle authorization failures consistently.
+- [x] Add baseline security headers.
 
 ## Vercel Deployment
 
-- Confirm database provider.
-- Use Neon for PostgreSQL.
-- Add Vercel environment variable checklist.
-- Confirm build command.
-- Confirm Prisma generation in build.
-- Confirm migration workflow.
-- Add deployment notes to README.
-- Test production build locally.
+- [x] Confirm database provider.
+- [x] Use Neon for PostgreSQL.
+- [x] Add Vercel environment variable checklist.
+- [x] Confirm build command.
+- [x] Confirm Prisma generation in build.
+- [x] Confirm migration workflow.
+- [x] Add deployment notes to README.
+- [x] Test production build locally.
 
 ## Verification
 
@@ -159,7 +160,10 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 - [x] Test search.
 - [x] Test article metadata.
 - [x] Test admin login/logout.
-- Test create/edit/delete post with a real Cloudinary upload.
-- Test create/delete upcoming card with a real Cloudinary upload.
-- Test Cloudinary cleanup behavior with real uploaded assets.
+- [x] Test create/edit/delete post with a real Cloudinary upload.
+- [x] Test create/delete upcoming card with a real Cloudinary upload.
+- [x] Test Cloudinary cleanup behavior with real uploaded assets.
 - Test mobile layout.
+- [x] Test sitemap.
+- [x] Test robots.
+- [x] Test 404 page.

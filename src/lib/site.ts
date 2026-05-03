@@ -6,6 +6,12 @@ export const SITE_DESCRIPTION =
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
+export const SITE_ORIGIN = new URL(SITE_URL).origin;
+
+export function getAbsoluteUrl(path = "/") {
+  return new URL(path, SITE_ORIGIN).toString();
+}
+
 export const BLOG_CATEGORIES = ["games", "anime", "books", "tv"] as const;
 
 export type BlogCategorySlug = (typeof BLOG_CATEGORIES)[number];

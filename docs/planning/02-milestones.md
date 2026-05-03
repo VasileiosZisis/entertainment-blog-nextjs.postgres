@@ -174,7 +174,7 @@ Completion notes:
 
 ## Milestone 6: Admin Blog Management
 
-Status: implementation complete.
+Status: complete.
 
 Goal: allow the admin to manage blog posts.
 
@@ -210,11 +210,11 @@ Completion notes:
 - Increased Server Action body size limit for image uploads.
 - Verified admin post routes with an authenticated session.
 - Verified `npm run check`.
-- Live Cloudinary create/edit/delete smoke testing is left for manual review to avoid creating and deleting remote assets without an explicit test run.
+- User verified live Cloudinary create/edit/delete smoke testing with real uploaded assets.
 
 ## Milestone 7: Admin Upcoming Management
 
-Status: implementation complete.
+Status: complete.
 
 Goal: allow the admin to manage upcoming/currently cards.
 
@@ -243,28 +243,43 @@ Completion notes:
 - Verified anonymous `/admin/upcoming` redirects to login.
 - Verified authenticated `/admin/upcoming` renders the list and form.
 - Verified `npm run check`.
-- Live Cloudinary create/delete smoke testing is left for manual review to avoid creating and deleting remote assets without an explicit test run.
+- User verified live Cloudinary create/delete smoke testing with real uploaded assets.
 
 ## Milestone 8: Production Readiness
+
+Status: complete.
 
 Goal: prepare the app for Vercel deployment.
 
 Tasks:
 
-- Add production environment variable documentation.
-- Confirm Vercel build command.
-- Confirm Prisma generate/migrate workflow for deployment.
-- Add security headers where needed.
-- Add sitemap.
-- Add robots configuration.
-- Add 404 and error states.
-- Run final build and lint checks.
+- [x] Add production environment variable documentation.
+- [x] Confirm Vercel build command.
+- [x] Confirm Prisma generate/migrate workflow for deployment.
+- [x] Add security headers where needed.
+- [x] Add sitemap.
+- [x] Add robots configuration.
+- [x] Add 404 and error states.
+- [x] Run final build and lint checks.
 
 Exit criteria:
 
-- The app builds for production.
-- Required deployment variables are documented.
-- Vercel deployment path is clear.
+- [x] The app builds for production.
+- [x] Required deployment variables are documented.
+- [x] Vercel deployment path is clear.
+
+Completion notes:
+
+- Added `sitemap.ts` for public routes and published blog posts.
+- Added `robots.ts` with admin and login paths excluded.
+- Added root not-found, route error, and global error UI.
+- Added baseline security headers and disabled the powered-by header.
+- Updated the build script to run Prisma Client generation before `next build`.
+- Added a production migration script for `prisma migrate deploy`.
+- Updated deployment notes with the production domain and Vercel workflow.
+- Verified Prisma schema validation and migration status.
+- Verified `npm run check`.
+- Verified production `/sitemap.xml`, `/robots.txt`, and 404 responses locally.
 
 ## Milestone 9: Post-Launch Enhancements
 
