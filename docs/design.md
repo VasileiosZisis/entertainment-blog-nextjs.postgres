@@ -42,7 +42,7 @@ The homepage now defines these reusable patterns:
 - Keep Geist for v1.
 - Use large, tight hero type for the brand.
 - Use strong section headings with short supporting copy.
-- Use small uppercase labels and mono numerals for the app-like indexing system.
+- Use small uppercase labels and compact metadata for the app-like indexing system.
 - Avoid long marketing copy.
 
 ## Color Palette
@@ -57,6 +57,10 @@ The palette is light-only and restrained:
 
 The goal is to avoid a generic beige editorial theme while keeping the site readable and calm.
 
+## Background Asset
+
+The public site uses `/background-abstract.svg` as a low-contrast grey-white geometric background. It should stay subtle enough to sit behind long text and list sections without reducing readability.
+
 ## Interaction Direction
 
 Use motion sparingly:
@@ -64,7 +68,7 @@ Use motion sparingly:
 - Hero text enters with a short reveal.
 - Hero image has a slow ambient scale.
 - Currently carousel scrolls continuously and includes every upcoming entry.
-- Rows and links use small hover movement and underline reveals.
+- Rows and links use restrained hover states: image scale, underline reveals, and quiet background changes.
 
 Future pages should reuse these motion rules instead of adding unrelated animations.
 

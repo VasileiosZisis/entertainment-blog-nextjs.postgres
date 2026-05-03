@@ -1,0 +1,65 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Subtle grey white abstract geometric background</title>
+  <desc id="desc">A quiet vector background with diagonal white and grey geometric bands and soft shadows</desc>
+  <defs>
+    <linearGradient id="base" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fbfbfa"/>
+      <stop offset="0.48" stop-color="#f2f3f1"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+
+    <linearGradient id="paperLight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.98"/>
+      <stop offset="1" stop-color="#f3f4f2" stop-opacity="0.84"/>
+    </linearGradient>
+
+    <linearGradient id="paperGrey" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eceeed" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#fafafa" stop-opacity="0.72"/>
+    </linearGradient>
+
+    <linearGradient id="edgeFade" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d8d9d7" stop-opacity="0.5"/>
+      <stop offset="0.45" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#dfe1df" stop-opacity="0.38"/>
+    </linearGradient>
+
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="18" dy="24" stdDeviation="24" flood-color="#9fa3a0" flood-opacity="0.16"/>
+    </filter>
+
+    <filter id="thinShadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="10" dy="16" stdDeviation="14" flood-color="#9da19d" flood-opacity="0.12"/>
+    </filter>
+
+    <pattern id="grain" width="120" height="120" patternUnits="userSpaceOnUse">
+      <path d="M0 119H120M119 0V120" stroke="#d9dcda" stroke-opacity="0.12"/>
+    </pattern>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#base)"/>
+  <rect width="1920" height="1080" fill="url(#grain)" opacity="0.32"/>
+
+  <g opacity="0.95">
+    <path d="M-180 1080L820 0H1030L30 1080H-180Z" fill="url(#paperLight)" filter="url(#softShadow)"/>
+    <path d="M125 1080L1125 0H1390L390 1080H125Z" fill="#f6f7f5" opacity="0.92" filter="url(#thinShadow)"/>
+    <path d="M600 1080L1600 0H1840L840 1080H600Z" fill="url(#paperGrey)" filter="url(#softShadow)"/>
+    <path d="M1160 1080L2160 0H2375L1375 1080H1160Z" fill="#ffffff" opacity="0.88" filter="url(#thinShadow)"/>
+  </g>
+
+  <g opacity="0.72">
+    <path d="M-80 0H255L-745 1080H-1080L-80 0Z" fill="#f0f1ef"/>
+    <path d="M420 0H570L-430 1080H-580L420 0Z" fill="#ffffff"/>
+    <path d="M760 0H910L-90 1080H-240L760 0Z" fill="#e8e9e7"/>
+    <path d="M1440 0H1580L580 1080H440L1440 0Z" fill="#ffffff"/>
+  </g>
+
+  <g opacity="0.38">
+    <path d="M0 1010L930 0" stroke="#c9ccc9" stroke-width="2"/>
+    <path d="M420 1080L1420 0" stroke="#d8dbd8" stroke-width="2"/>
+    <path d="M1170 1080L1920 270" stroke="#d0d3d0" stroke-width="2"/>
+  </g>
+
+  <rect width="1920" height="1080" fill="url(#edgeFade)" opacity="0.55"/>
+  <rect width="1920" height="1080" fill="#ffffff" opacity="0.12"/>
+</svg>

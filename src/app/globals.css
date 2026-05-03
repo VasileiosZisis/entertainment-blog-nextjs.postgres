@@ -27,7 +27,13 @@ html {
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image:
+    linear-gradient(rgba(247, 247, 242, 0.52), rgba(247, 247, 242, 0.52)),
+    url("/background-abstract.svg");
+  background-position: center top;
+  background-repeat: repeat-y;
+  background-size: max(120rem, 100vw) auto;
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
