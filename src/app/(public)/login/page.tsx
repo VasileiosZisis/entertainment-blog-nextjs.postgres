@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
+import { LoginForm } from "@/components/login-form";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -9,12 +10,32 @@ export const metadata: Metadata = {
   },
 };
 
-export default function LoginPage() {
+type LoginPageProps = {
+  searchParams: Promise<{
+    next?: string | string[];
+  }>;
+};
+
+function getSafeAdminRedirect(next: string | string[] | undefined) {
+  const value = Array.isArray(next) ? next[0] : next;
+
+  if (value?.startsWith("/admin")) {
+    return value;
+  }
+
+  return undefined;
+}
+
+export default async function LoginPage({ searchParams }: LoginPageProps) {
+  const redirectTo = getSafeAdminRedirect((await searchParams).next);
+
   return (
     <PageShell
       eyebrow="Admin"
       title="Login"
-      description="The admin login form will be implemented in the authentication milestone."
-    />
+      description="Sign in to manage Quick and Honest content."
+    >
+      <LoginForm redirectTo={redirectTo} />
+    </PageShell>
   );
 }

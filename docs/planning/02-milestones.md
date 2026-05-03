@@ -139,25 +139,38 @@ Completion notes:
 
 ## Milestone 5: Authentication
 
-Status: next.
+Status: complete.
 
 Goal: allow the owner/admin to log in securely.
 
 Tasks:
 
-- Build login page.
-- Implement password verification.
-- Set HTTP-only JWT cookie.
-- Add logout.
-- Add current-user helper.
-- Protect admin routes.
-- Add basic unauthorized handling.
+- [x] Build login page.
+- [x] Implement password verification.
+- [x] Set HTTP-only JWT cookie.
+- [x] Add logout.
+- [x] Add current-user helper.
+- [x] Protect admin routes.
+- [x] Add basic unauthorized handling.
 
 Exit criteria:
 
-- Admin can log in and out.
-- Admin-only routes reject anonymous users.
-- Public pages remain accessible.
+- [x] Admin can log in and out.
+- [x] Admin-only routes reject anonymous users.
+- [x] Public pages remain accessible.
+
+Completion notes:
+
+- Added bcrypt password verification through a Server Action.
+- Added signed JWT auth cookies with HTTP-only, same-site, and production-secure settings.
+- Added current-admin lookup backed by Prisma.
+- Added `/admin` as the minimal authenticated dashboard.
+- Protected `/admin` routes with Next.js Proxy.
+- Verified anonymous `/admin` redirects to `/login`.
+- Preserved safe admin-local `next` redirects through login.
+- Verified login redirects to `/admin` and sets the auth cookie.
+- Verified logout redirects to `/login` and clears the auth cookie.
+- Verified `npm run check`.
 
 ## Milestone 6: Admin Blog Management
 

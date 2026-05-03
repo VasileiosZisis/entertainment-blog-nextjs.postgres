@@ -108,7 +108,7 @@ Suggested indexes:
 - Admin logs in with email and password.
 - Server verifies password with bcrypt.
 - Server sets an HTTP-only cookie containing a signed JWT.
-- Middleware or server-side helpers protect admin routes.
+- Next.js Proxy and server-side helpers protect admin routes.
 - Logout clears the cookie.
 - Public registration is not included.
 - Password reset is deferred.

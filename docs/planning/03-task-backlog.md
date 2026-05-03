@@ -33,12 +33,12 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 - [x] Visible public nav links: Blog, Games, Anime, Books, TV.
 - [x] Do not include a visible login link.
 - [x] Build footer.
-- Build post card component.
-- Build upcoming card component.
-- Build pagination component.
+- [x] Build post card component.
+- [x] Build upcoming card component.
+- [x] Build pagination component.
 - Build empty state component.
 - Build loading state component.
-- Build form controls.
+- [x] Build form controls.
 - Build admin layout.
 
 ## Prisma And Database
@@ -75,21 +75,21 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 - [x] Blog search page.
 - [x] Category pages.
 - [x] Article page.
-- Login page.
+- [x] Login page.
 - 404 page.
 - [x] Do not build `/about` or `/contact` for v1.
 
 ## Admin Auth
 
-- Add login form.
-- Add login action or route handler.
-- Add password hashing and comparison.
-- Add JWT signing.
-- Add JWT verification.
-- Add cookie utilities.
-- Add logout action or route handler.
-- Add admin route protection.
-- Add current admin lookup.
+- [x] Add login form.
+- [x] Add login action or route handler.
+- [x] Add password hashing and comparison.
+- [x] Add JWT signing.
+- [x] Add JWT verification.
+- [x] Add cookie utilities.
+- [x] Add logout action or route handler.
+- [x] Add admin route protection.
+- [x] Add current admin lookup.
 
 ## Blog Admin
 
@@ -133,10 +133,10 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 - Sanitize rich text content.
 - Validate file MIME types.
 - Validate file sizes.
-- Use HTTP-only cookies.
-- Use secure cookies in production.
-- Avoid exposing admin-only data in public responses.
-- Handle authorization failures consistently.
+- [x] Use HTTP-only cookies.
+- [x] Use secure cookies in production.
+- [x] Avoid exposing admin-only data in public responses.
+- [x] Handle authorization failures consistently.
 
 ## Vercel Deployment
 
@@ -158,7 +158,7 @@ This backlog breaks the milestones into smaller implementation tasks. Move tasks
 - [x] Test pagination.
 - [x] Test search.
 - [x] Test article metadata.
-- Test admin login/logout.
+- [x] Test admin login/logout.
 - Test create/edit/delete post.
 - Test create/delete upcoming card.
 - Test Cloudinary cleanup behavior.
