@@ -159,8 +159,8 @@ button {
 
 .rich-text {
   color: var(--foreground);
-  font-size: 1.0625rem;
-  line-height: 1.85;
+  font-size: 1.125rem;
+  line-height: 1.9;
 }
 
 .rich-text p,
@@ -169,7 +169,7 @@ button {
 .rich-text blockquote,
 .rich-text h2,
 .rich-text h3 {
-  margin-block: 1.35rem;
+  margin-block: 1.45rem;
 }
 
 .rich-text h2,
@@ -179,11 +179,13 @@ button {
 }
 
 .rich-text h2 {
-  font-size: 1.65rem;
+  font-size: 2rem;
+  margin-top: 2.7rem;
 }
 
 .rich-text h3 {
-  font-size: 1.35rem;
+  font-size: 1.5rem;
+  margin-top: 2.2rem;
 }
 
 .rich-text ul,
@@ -202,7 +204,9 @@ button {
 .rich-text blockquote {
   border-left: 2px solid var(--accent);
   color: var(--muted);
-  padding-left: 1rem;
+  font-size: 1.2rem;
+  line-height: 1.75;
+  padding-left: 1.25rem;
 }
 
 .rich-text a {

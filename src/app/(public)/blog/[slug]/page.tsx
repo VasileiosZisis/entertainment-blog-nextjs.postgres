@@ -58,38 +58,49 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   return (
-    <main className="mx-auto w-full max-w-4xl flex-1 px-6 py-12 sm:px-8 lg:px-10 lg:py-16">
-      <article>
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium uppercase tracking-[0.16em] text-muted">
-          <Link
-            href={getCategoryPath(post.category)}
-            className="transition-colors hover:text-accent"
-          >
-            {getCategoryLabel(post.category)}
-          </Link>
-          <span aria-hidden="true">/</span>
-          <time dateTime={post.createdAt.toISOString()}>
-            {formatPostDate(post.createdAt)}
-          </time>
-        </div>
+    <main className="mx-auto w-full max-w-7xl flex-1 px-6 py-10 sm:px-8 lg:px-10 lg:py-16">
+      <article className="mx-auto max-w-3xl">
+        <Link
+          href="/blog"
+          className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted transition-colors hover:text-accent"
+        >
+          Back to blog
+        </Link>
 
-        <h1 className="mt-5 text-4xl font-semibold leading-tight text-balance text-foreground sm:text-5xl">
-          {post.title}
-        </h1>
-        <p className="mt-5 text-xl leading-8 text-muted">{post.subtitle}</p>
-
-        <div className="relative mt-10 aspect-[16/10] overflow-hidden bg-surface">
+        <div className="relative mt-8 aspect-[16/10] overflow-hidden bg-surface">
           <Image
             src={post.imageUrl}
             alt={post.imageAlt}
             fill
             priority
-            sizes="(max-width: 1024px) 100vw, 896px"
+            sizes="(max-width: 768px) 100vw, 768px"
             className="object-cover"
           />
         </div>
 
-        <div className="mt-10 border-t border-border pt-8">
+        <header className="mt-10 border-b border-border pb-8">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-semibold uppercase tracking-[0.16em] text-muted">
+            <Link
+              href={getCategoryPath(post.category)}
+              className="transition-colors hover:text-accent"
+            >
+              {getCategoryLabel(post.category)}
+            </Link>
+            <span aria-hidden="true">/</span>
+            <time dateTime={post.createdAt.toISOString()}>
+              {formatPostDate(post.createdAt)}
+            </time>
+          </div>
+
+          <h1 className="mt-5 text-5xl font-semibold leading-[0.98] text-balance text-foreground sm:text-6xl">
+            {post.title}
+          </h1>
+          <p className="mt-6 text-xl leading-8 text-muted sm:text-2xl sm:leading-9">
+            {post.subtitle}
+          </p>
+        </header>
+
+        <div className="mt-10">
           <RichText html={post.content} />
         </div>
       </article>

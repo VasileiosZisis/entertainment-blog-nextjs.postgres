@@ -104,3 +104,26 @@ Archive patterns:
 - Use image scale, underline reveal, and quiet background hover instead of arrows or heavy button chrome inside rows.
 - Keep pagination rectangular and informational, with a visible page count.
 - Empty states should sound casual and useful, not like generic system errors.
+
+## Design Milestone 3: Article Detail
+
+Status: complete.
+
+Scope:
+
+- Redesign `/blog/[slug]`.
+- Use a narrow reading column with the post image above the article header.
+- Keep articles as category/date, title, subtitle, image, and body only.
+- Do not add author display.
+- Do not add related posts, previous/next links, verdict boxes, comments, or share controls.
+- Keep existing route behavior, metadata, and sanitized rich text rendering intact.
+
+Article pages should feel quieter than the homepage and archive pages. The main job is reading, so the layout should use fewer controls, a stable image, compact metadata, and generous text rhythm.
+
+Article patterns:
+
+- Start with a simple `Back to blog` link.
+- Keep the image inside the same narrow reading measure as the article.
+- Use the same uppercase category/date metadata language as archive rows.
+- Make the title large and direct, but keep the body column narrow enough for comfortable reading.
+- Rich text should support clear paragraphs, H2/H3 headings, lists, links, and blockquotes without feeling like a generic CMS template.
