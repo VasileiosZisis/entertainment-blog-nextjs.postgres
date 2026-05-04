@@ -100,7 +100,7 @@ Archive patterns:
 
 - Use the same max-width, spacing, label style, and foreground/accent system as the homepage.
 - Keep search visible on the main blog and search result pages.
-- Render post previews as full-width rows with a stable image block, compact metadata, large title, and short subtitle.
+- Render post previews as full-width rows with a stable wide image block, compact metadata, large title, and short subtitle.
 - Use image scale, underline reveal, and quiet background hover instead of arrows or heavy button chrome inside rows.
 - Keep pagination rectangular and informational, with a visible page count.
 - Empty states should sound casual and useful, not like generic system errors.

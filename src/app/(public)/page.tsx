@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
+import { PostCard } from "@/components/post-card";
 import { getCategoryLabel } from "@/features/posts/categories";
 import { formatPostDate } from "@/features/posts/format";
 import type { PostListItem } from "@/features/posts/types";
@@ -142,42 +143,6 @@ function CurrentCarousel({ items }: { items: UpcomingItem[] }) {
   );
 }
 
-function PostRow({ post }: { post: PostListItem }) {
-  return (
-    <article className="group border-t border-border">
-      <Link
-        href={`/blog/${post.slug}`}
-        className="grid gap-5 py-6 transition-colors hover:bg-surface/70 sm:grid-cols-[350px_1fr]"
-      >
-        <div className="relative h-[275px] w-full max-w-[350px] overflow-hidden bg-surface">
-          <Image
-            src={post.imageUrl}
-            alt={post.imageAlt}
-            fill
-            sizes="350px"
-            className="object-cover transition duration-500 group-hover:scale-[1.04]"
-          />
-        </div>
-        <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-muted">
-            <span>{getCategoryLabel(post.category)}</span>
-            <span aria-hidden="true">/</span>
-            <time dateTime={post.createdAt.toISOString()}>
-              {formatPostDate(post.createdAt)}
-            </time>
-          </div>
-          <h3 className="home-link-line mt-2 inline text-2xl font-semibold leading-tight text-balance text-foreground">
-            {post.title}
-          </h3>
-          <p className="mt-2 max-w-2xl text-base leading-6 text-muted">
-            {post.subtitle}
-          </p>
-        </div>
-      </Link>
-    </article>
-  );
-}
-
 type CategoryPostGroup = Awaited<
   ReturnType<typeof getLatestPostsByCategoryGroups>
 >[number];
@@ -196,7 +161,7 @@ function CategoryPostLane({ group }: { group: CategoryPostGroup }) {
 
       <div className="mt-5">
         {group.posts.length > 0 ? (
-          group.posts.map((post) => <PostRow key={post.id} post={post} />)
+          group.posts.map((post) => <PostCard key={post.id} post={post} />)
         ) : (
           <p className="border-t border-border py-6 text-base text-muted">
             No posts yet

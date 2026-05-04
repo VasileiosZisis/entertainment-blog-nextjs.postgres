@@ -14,15 +14,15 @@ export function PostCard({ post, priority = false }: PostCardProps) {
     <article className="group border-t border-border">
       <Link
         href={`/blog/${post.slug}`}
-        className="grid gap-5 py-6 transition-colors hover:bg-surface/70 sm:grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr]"
+        className="grid gap-5 py-6 transition-colors hover:bg-surface/70 sm:grid-cols-[420px_1fr] lg:grid-cols-[460px_1fr]"
       >
-        <div className="relative h-[220px] w-full overflow-hidden bg-surface sm:h-[210px] lg:h-[230px]">
+        <div className="relative h-[220px] w-full overflow-hidden bg-surface sm:h-[240px] lg:h-[260px]">
           <Image
             src={post.imageUrl}
             alt={post.imageAlt}
             fill
             priority={priority}
-            sizes="(max-width: 640px) 100vw, 320px"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 420px, 460px"
             className="object-cover transition duration-500 group-hover:scale-[1.04]"
           />
         </div>
