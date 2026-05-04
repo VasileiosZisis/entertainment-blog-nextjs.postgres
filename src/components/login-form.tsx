@@ -16,11 +16,17 @@ export function LoginForm({ redirectTo }: LoginFormProps) {
   );
 
   return (
-    <form action={formAction} className="mt-10 w-full max-w-sm space-y-5">
+    <form
+      action={formAction}
+      className="mt-10 w-full max-w-md border-y border-border py-6"
+    >
       {redirectTo && <input type="hidden" name="next" value={redirectTo} />}
 
       <div>
-        <label htmlFor="email" className="text-sm font-medium text-foreground">
+        <label
+          htmlFor="email"
+          className="text-sm font-semibold uppercase tracking-[0.16em] text-muted"
+        >
           Email
         </label>
         <input
@@ -29,14 +35,14 @@ export function LoginForm({ redirectTo }: LoginFormProps) {
           type="email"
           autoComplete="email"
           required
-          className="mt-2 w-full border border-border bg-background px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground"
+          className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
         />
       </div>
 
-      <div>
+      <div className="mt-5">
         <label
           htmlFor="password"
-          className="text-sm font-medium text-foreground"
+          className="text-sm font-semibold uppercase tracking-[0.16em] text-muted"
         >
           Password
         </label>
@@ -46,12 +52,12 @@ export function LoginForm({ redirectTo }: LoginFormProps) {
           type="password"
           autoComplete="current-password"
           required
-          className="mt-2 w-full border border-border bg-background px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground"
+          className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
         />
       </div>
 
       {state.error && (
-        <p className="text-sm font-medium text-accent" role="alert">
+        <p className="mt-5 text-sm font-semibold text-accent" role="alert">
           {state.error}
         </p>
       )}
@@ -59,7 +65,7 @@ export function LoginForm({ redirectTo }: LoginFormProps) {
       <button
         type="submit"
         disabled={isPending}
-        className="w-full rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition-colors hover:bg-accent disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-6 w-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent disabled:cursor-not-allowed disabled:opacity-60"
       >
         {isPending ? "Signing in..." : "Sign in"}
       </button>

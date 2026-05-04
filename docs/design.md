@@ -127,3 +127,26 @@ Article patterns:
 - Use the same uppercase category/date metadata language as archive rows.
 - Make the title large and direct, but keep the body column narrow enough for comfortable reading.
 - Rich text should support clear paragraphs, H2/H3 headings, lists, links, and blockquotes without feeling like a generic CMS template.
+
+## Design Milestone 4: Public Chrome And Utility Pages
+
+Status: complete.
+
+Scope:
+
+- Refine the sticky public header.
+- Refine the mobile dropdown navigation.
+- Refine the footer without changing its content.
+- Keep `/login` functional and understated.
+- Redesign the global not-found page with casual blog language.
+- Keep admin pages out of this pass.
+
+Shared chrome should stay quiet and useful. The header should remain sticky, minimal, and readable over the light background, with sharper active and hover states but no heavy decoration. The mobile menu should remain a dropdown, not a full-screen takeover.
+
+Utility page patterns:
+
+- Login should feel like a private utility surface, not a marketing page.
+- Not-found copy should stay casual and reader-first.
+- Buttons should use the same rectangular foreground/accent treatment as the homepage and archives.
+- Footer links should stay simple, with the creator credit preserved.
+- Public chrome should support the content without competing with the article, archive, or homepage layouts.

@@ -40,7 +40,8 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
     <PageShell
       eyebrow="Admin"
       title="Login"
-      description="Sign in to manage Quick and Honest content."
+      description="Sign in to manage Quick and Honest content"
+      meta="Private admin area"
     >
       <LoginForm redirectTo={redirectTo} />
     </PageShell>
