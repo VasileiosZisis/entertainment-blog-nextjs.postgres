@@ -10,16 +10,19 @@ export default async function AdminUpcomingPage() {
 
   return (
     <section>
-      <div>
-        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-accent">
-          Home page
-        </p>
-        <h1 className="mt-3 text-4xl font-semibold text-foreground">
-          Upcoming cards
-        </h1>
-        <p className="mt-4 max-w-2xl leading-7 text-muted">
+      <div className="grid gap-8 border-b border-border pb-8 lg:grid-cols-[0.76fr_1.24fr]">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-accent">
+            Home page
+          </p>
+          <h1 className="mt-3 text-5xl font-semibold leading-[0.98] text-foreground">
+            Upcoming cards
+          </h1>
+        </div>
+
+        <p className="max-w-2xl text-lg leading-8 text-muted lg:pt-8">
           Manage the Reading, Watching, and Playing cards shown on the public
-          home page.
+          home page
         </p>
       </div>
 
@@ -29,17 +32,17 @@ export default async function AdminUpcomingPage() {
             cards.map((card) => (
               <article
                 key={card.id}
-                className="grid gap-5 py-5 md:grid-cols-[120px_1fr_auto]"
+                className="grid gap-5 py-5 transition-colors hover:bg-background/70 md:grid-cols-[160px_1fr_auto]"
               >
                 <Image
                   src={card.imageUrl}
                   alt={card.imageAlt}
-                  width={240}
-                  height={150}
-                  className="aspect-[8/5] w-full max-w-40 object-cover md:max-w-none"
+                  width={320}
+                  height={200}
+                  className="aspect-[8/5] w-full max-w-72 object-cover md:max-w-none"
                 />
 
-                <div>
+                <div className="min-w-0 self-center">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
                     {getUpcomingKindLabel(card.kind)}
                   </p>
@@ -66,23 +69,23 @@ export default async function AdminUpcomingPage() {
             ))
           ) : (
             <div className="py-12">
-              <h2 className="text-xl font-semibold text-foreground">
+              <h2 className="text-2xl font-semibold text-foreground">
                 No upcoming cards yet
               </h2>
               <p className="mt-2 text-muted">
-                Add one to show it on the public home page.
+                Add one to show it on the public home page
               </p>
             </div>
           )}
         </div>
 
-        <aside className="border border-border p-5">
+        <aside className="border-y border-border py-6 lg:border lg:p-6">
           <h2 className="text-xl font-semibold text-foreground">
             Add upcoming card
           </h2>
           <p className="mt-2 text-sm leading-6 text-muted">
             Use concise titles for the thing currently being read, watched, or
-            played.
+            played
           </p>
 
           <div className="mt-6">

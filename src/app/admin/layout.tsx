@@ -35,25 +35,25 @@ export default async function AdminLayout({
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="border-b border-border">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-5 px-6 py-6 sm:px-8 lg:px-10">
+      <header className="border-b border-border bg-background/88 backdrop-blur-md">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-5 px-6 py-5 sm:px-8 lg:px-10">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <Link
                 href="/"
-                className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted transition-colors hover:text-foreground"
+                className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-foreground transition-colors hover:text-accent"
               >
                 Quick and Honest
               </Link>
-              <p className="mt-2 text-sm text-muted">
-                Signed in as {user.email}
+              <p className="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-muted">
+                Admin / {user.email}
               </p>
             </div>
 
             <form action={logoutAction}>
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-foreground"
+                className="inline-flex items-center gap-2 border border-border bg-background/70 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-foreground hover:bg-background"
               >
                 <LogOut size={16} aria-hidden="true" />
                 Log out
@@ -70,7 +70,7 @@ export default async function AdminLayout({
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-foreground hover:text-foreground"
+                      className="inline-flex items-center gap-2 border border-border bg-background/60 px-4 py-2 text-sm font-semibold text-muted transition-colors hover:border-foreground hover:bg-background hover:text-foreground"
                     >
                       <Icon size={16} aria-hidden="true" />
                       {item.label}
@@ -83,7 +83,7 @@ export default async function AdminLayout({
         </div>
       </header>
 
-      <main className="mx-auto w-full max-w-6xl px-6 py-10 sm:px-8 lg:px-10">
+      <main className="mx-auto w-full max-w-7xl px-6 py-10 sm:px-8 lg:px-10">
         {children}
       </main>
     </div>

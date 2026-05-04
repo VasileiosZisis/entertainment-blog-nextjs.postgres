@@ -56,7 +56,7 @@ export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
     editorProps: {
       attributes: {
         class:
-          "min-h-64 border border-border bg-background px-4 py-3 text-base leading-7 text-foreground outline-none",
+          "min-h-64 border border-border bg-background/80 px-4 py-3 text-base leading-7 text-foreground outline-none transition-colors focus:bg-background",
       },
     },
     onUpdate({ editor }) {
@@ -66,7 +66,7 @@ export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
 
   if (!editor) {
     return (
-      <div className="min-h-64 border border-border bg-surface px-4 py-3 text-sm text-muted">
+      <div className="min-h-64 border border-border bg-background/80 px-4 py-3 text-sm text-muted">
         Loading editor...
       </div>
     );
@@ -74,7 +74,7 @@ export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2 border border-b-0 border-border bg-surface p-2">
+      <div className="flex flex-wrap gap-2 border border-b-0 border-border bg-background/70 p-2">
         <ToolbarButton
           label="Paragraph"
           active={editor.isActive("paragraph")}
@@ -256,10 +256,10 @@ function ToolbarButton({
       title={label}
       onMouseDown={(event) => event.preventDefault()}
       onClick={onClick}
-      className={`inline-flex size-9 items-center justify-center rounded-full text-sm font-medium transition-colors ${
+      className={`inline-flex size-9 items-center justify-center border text-sm font-medium transition-colors ${
         active
-          ? "bg-foreground text-background"
-          : "border border-border text-foreground hover:border-foreground"
+          ? "border-foreground bg-foreground text-background"
+          : "border-border text-foreground hover:border-foreground hover:bg-background"
       }`}
     >
       {children}

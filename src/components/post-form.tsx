@@ -24,7 +24,7 @@ const RichTextEditor = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="min-h-64 border border-border bg-surface px-4 py-3 text-sm text-muted">
+      <div className="min-h-64 border border-border bg-background/80 px-4 py-3 text-sm text-muted">
         Loading editor...
       </div>
     ),
@@ -70,7 +70,7 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
   const imageRequired = mode === "create";
 
   return (
-    <form action={formAction} className="mt-10 max-w-4xl space-y-10">
+    <form action={formAction} className="mt-10 max-w-5xl space-y-10">
       {mode === "edit" && (
         <input type="hidden" name="id" value={initialPost.id} />
       )}
@@ -87,7 +87,7 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
             required
             maxLength={80}
             defaultValue={initialPost?.title}
-            className="mt-2 w-full border border-border bg-background px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground"
+            className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
           />
         </Field>
 
@@ -97,7 +97,7 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
             name="category"
             required
             defaultValue={initialPost?.category ?? BlogCategory.GAME}
-            className="mt-2 w-full border border-border bg-background px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground"
+            className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
           >
             {categoryOptions.map((category) => (
               <option key={category} value={category}>
@@ -116,15 +116,17 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
           required
           maxLength={140}
           defaultValue={initialPost?.subtitle}
-          className="mt-2 w-full border border-border bg-background px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground"
+          className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
         />
       </Field>
 
       <div>
         <div className="mb-2 flex flex-col gap-1">
-          <label className="text-sm font-medium text-foreground">Content</label>
+          <label className="text-sm font-semibold uppercase tracking-[0.16em] text-muted">
+            Content
+          </label>
           <p className="text-sm text-muted">
-            Rich text is sanitized before it is stored.
+            Rich text is sanitized before it is stored
           </p>
         </div>
         <RichTextEditor value={content} onChange={setContent} />
@@ -139,10 +141,10 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
             type="file"
             accept={ALLOWED_POST_IMAGE_TYPES.join(",")}
             required={imageRequired}
-            className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground file:mr-4 file:rounded-full file:border-0 file:bg-foreground file:px-4 file:py-2 file:text-sm file:font-medium file:text-background"
+            className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-sm text-foreground file:mr-4 file:border-0 file:bg-foreground file:px-4 file:py-2 file:text-sm file:font-semibold file:text-background"
           />
           <p className="mt-2 text-xs text-muted">
-            JPEG, PNG, or WebP. Maximum 5 MB.
+            JPEG, PNG, or WebP. Maximum 5 MB
           </p>
         </Field>
 
@@ -158,20 +160,22 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
             required
             maxLength={180}
             defaultValue={initialPost?.imageAlt}
-            className="mt-2 w-full border border-border bg-background px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground"
+            className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
           />
         </Field>
       </div>
 
       {initialPost?.imageUrl && (
         <div>
-          <p className="text-sm font-medium text-foreground">Current image</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted">
+            Current image
+          </p>
           <Image
             src={initialPost.imageUrl}
             alt={initialPost.imageAlt}
             width={640}
             height={400}
-            className="mt-3 aspect-[8/5] w-full max-w-md object-cover"
+            className="mt-3 aspect-[8/5] w-full max-w-xl object-cover"
           />
         </div>
       )}
@@ -190,7 +194,7 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
         <button
           type="submit"
           disabled={isPending}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition-colors hover:bg-accent disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex items-center justify-center gap-2 bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent disabled:cursor-not-allowed disabled:opacity-60"
         >
           <Save size={16} aria-hidden="true" />
           {isPending
@@ -217,7 +221,10 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={name} className="text-sm font-medium text-foreground">
+      <label
+        htmlFor={name}
+        className="text-sm font-semibold uppercase tracking-[0.16em] text-muted"
+      >
         {label}
       </label>
       {children}

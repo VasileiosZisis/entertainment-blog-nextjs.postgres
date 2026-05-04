@@ -150,3 +150,27 @@ Utility page patterns:
 - Buttons should use the same rectangular foreground/accent treatment as the homepage and archives.
 - Footer links should stay simple, with the creator credit preserved.
 - Public chrome should support the content without competing with the article, archive, or homepage layouts.
+
+## Design Milestone 5: Admin UI
+
+Status: complete.
+
+Scope:
+
+- Refine the admin layout and private navigation.
+- Refine the admin dashboard.
+- Refine the posts and upcoming list pages.
+- Refine the post and upcoming forms.
+- Keep behavior, routes, authentication, and publishing workflows unchanged.
+
+The admin area should feel like a small private workspace rather than a public editorial page. It can be quieter and more utilitarian than the reader-facing site, but it should still share the same typography, spacing, rectangular controls, and restrained border language.
+
+Admin patterns:
+
+- Use a wide `max-w-7xl` workspace for dashboard and list management pages.
+- Keep private navigation compact, rectangular, and clearly separated from public chrome.
+- Use direct status blocks for published posts, drafts, and upcoming cards.
+- Use full-width list rows with visible images, clear metadata, and obvious edit/delete actions.
+- Use more obvious input boxes for email, password, post, and upcoming forms.
+- Keep rich text controls rectangular and tool-like, with active states that are easy to see.
+- Avoid marketing language, decorative cards, and unnecessary motion in admin screens.

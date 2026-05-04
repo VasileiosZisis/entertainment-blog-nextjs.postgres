@@ -30,7 +30,7 @@ export function UpcomingForm() {
           id="kind"
           name="kind"
           required
-          className="mt-2 w-full border border-border bg-background px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground"
+          className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
         >
           {UPCOMING_KIND_OPTIONS.map((kind) => (
             <option key={kind} value={kind}>
@@ -47,7 +47,7 @@ export function UpcomingForm() {
           type="text"
           required
           maxLength={120}
-          className="mt-2 w-full border border-border bg-background px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground"
+          className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
         />
       </Field>
 
@@ -58,10 +58,10 @@ export function UpcomingForm() {
           type="file"
           accept={ALLOWED_UPCOMING_IMAGE_TYPES.join(",")}
           required
-          className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground file:mr-4 file:rounded-full file:border-0 file:bg-foreground file:px-4 file:py-2 file:text-sm file:font-medium file:text-background"
+          className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-sm text-foreground file:mr-4 file:border-0 file:bg-foreground file:px-4 file:py-2 file:text-sm file:font-semibold file:text-background"
         />
         <p className="mt-2 text-xs text-muted">
-          JPEG, PNG, or WebP. Maximum 5 MB.
+          JPEG, PNG, or WebP. Maximum 5 MB
         </p>
       </Field>
 
@@ -76,14 +76,14 @@ export function UpcomingForm() {
           type="text"
           required
           maxLength={180}
-          className="mt-2 w-full border border-border bg-background px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground"
+          className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
         />
       </Field>
 
       <button
         type="submit"
         disabled={isPending}
-        className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition-colors hover:bg-accent disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex items-center justify-center gap-2 bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent disabled:cursor-not-allowed disabled:opacity-60"
       >
         <Plus size={16} aria-hidden="true" />
         {isPending ? "Adding..." : "Add card"}
@@ -105,7 +105,10 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={name} className="text-sm font-medium text-foreground">
+      <label
+        htmlFor={name}
+        className="text-sm font-semibold uppercase tracking-[0.16em] text-muted"
+      >
         {label}
       </label>
       {children}

@@ -28,7 +28,7 @@ export default async function EditPostPage({
       <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
         <Link
           href="/admin/posts"
-          className="inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
+          className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted transition-colors hover:text-accent"
         >
           <ChevronLeft size={16} aria-hidden="true" />
           Back to posts
@@ -37,7 +37,7 @@ export default async function EditPostPage({
         <div className="flex flex-wrap gap-2">
           <Link
             href={`/blog/${post.slug}`}
-            className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-foreground"
+            className="inline-flex items-center gap-2 border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-foreground hover:bg-background"
           >
             <ExternalLink size={16} aria-hidden="true" />
             View
@@ -46,16 +46,16 @@ export default async function EditPostPage({
         </div>
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 border-b border-border pb-8">
         <p className="text-sm font-semibold uppercase tracking-[0.22em] text-accent">
           Edit post
         </p>
-        <h1 className="mt-3 text-4xl font-semibold text-foreground">
+        <h1 className="mt-3 max-w-4xl text-5xl font-semibold leading-[0.98] text-foreground">
           {post.title}
         </h1>
         {saved && (
-          <p className="mt-4 max-w-xl border-l-2 border-accent pl-4 text-sm font-medium text-foreground">
-            Changes saved.
+          <p className="mt-5 max-w-xl border-l-2 border-accent pl-4 text-sm font-semibold text-foreground">
+            Changes saved
           </p>
         )}
       </div>

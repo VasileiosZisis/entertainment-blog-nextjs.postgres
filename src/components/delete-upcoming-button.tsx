@@ -28,7 +28,7 @@ export function DeleteUpcomingButton({
       <input type="hidden" name="id" value={cardId} />
       <button
         type="submit"
-        className="inline-flex items-center gap-2 rounded-full border border-accent px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent hover:text-accent-foreground"
+        className="inline-flex items-center gap-2 border border-accent px-4 py-2 text-sm font-semibold text-accent transition-colors hover:bg-accent hover:text-accent-foreground"
       >
         <Trash2 size={16} aria-hidden="true" />
         Delete
