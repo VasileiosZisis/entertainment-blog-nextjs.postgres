@@ -3,7 +3,7 @@ import { CategoryPostsPage } from "@/features/posts/category-posts-page";
 
 export const metadata: Metadata = {
   title: "TV",
-  description: "Quick and Honest TV posts.",
+  description: "Quick and Honest TV posts",
 };
 
 export default function TvPage() {

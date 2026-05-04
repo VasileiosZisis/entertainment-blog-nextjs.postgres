@@ -19,12 +19,17 @@ export async function BlogListPage({ page }: BlogListPageProps) {
   return (
     <PageShell
       eyebrow="All posts"
-      title="Blog"
-      description="All quick and honest posts across games, anime, books, and TV."
+      title="Everything worth checking"
+      description="Games, anime, books, and TV in one direct list. Search or scan by date when you just want the next thing to try"
+      meta={`${data.totalPosts} post${data.totalPosts === 1 ? "" : "s"} ready to scan`}
     >
       <SearchForm />
       <section className="mt-14">
-        <PostGrid posts={data.posts} />
+        <PostGrid
+          posts={data.posts}
+          emptyTitle="No posts yet"
+          emptyMessage="Once something is published, it will show up here for a quick scan"
+        />
         <Pagination
           currentPage={data.currentPage}
           totalPages={data.totalPages}

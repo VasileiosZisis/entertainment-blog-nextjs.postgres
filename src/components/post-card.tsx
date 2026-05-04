@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getCategoryLabel, getCategoryPath } from "@/features/posts/categories";
+import { getCategoryLabel } from "@/features/posts/categories";
 import { formatPostDate } from "@/features/posts/format";
 import type { PostListItem } from "@/features/posts/types";
 
@@ -11,46 +11,39 @@ type PostCardProps = {
 
 export function PostCard({ post, priority = false }: PostCardProps) {
   return (
-    <article className="group">
-      <Link href={`/blog/${post.slug}`} className="block">
-        <div className="relative aspect-[4/3] overflow-hidden bg-surface">
+    <article className="group border-t border-border">
+      <Link
+        href={`/blog/${post.slug}`}
+        className="grid gap-5 py-6 transition-colors hover:bg-surface/70 sm:grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr]"
+      >
+        <div className="relative h-[220px] w-full overflow-hidden bg-surface sm:h-[210px] lg:h-[230px]">
           <Image
             src={post.imageUrl}
             alt={post.imageAlt}
             fill
             priority={priority}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition duration-500 group-hover:scale-[1.03]"
+            sizes="(max-width: 640px) 100vw, 320px"
+            className="object-cover transition duration-500 group-hover:scale-[1.04]"
           />
         </div>
-      </Link>
 
-      <div className="mt-5">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium uppercase tracking-[0.16em] text-muted">
-          <Link
-            href={getCategoryPath(post.category)}
-            className="transition-colors hover:text-accent"
-          >
+        <div className="min-w-0 self-center">
+          <div className="flex flex-wrap items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-muted">
             {getCategoryLabel(post.category)}
-          </Link>
-          <span aria-hidden="true">/</span>
-          <time dateTime={post.createdAt.toISOString()}>
-            {formatPostDate(post.createdAt)}
-          </time>
-        </div>
+            <span aria-hidden="true">/</span>
+            <time dateTime={post.createdAt.toISOString()}>
+              {formatPostDate(post.createdAt)}
+            </time>
+          </div>
 
-        <h2 className="mt-3 text-2xl font-semibold leading-snug text-foreground">
-          <Link
-            href={`/blog/${post.slug}`}
-            className="transition-colors group-hover:text-accent"
-          >
+          <h2 className="home-link-line mt-3 inline text-3xl font-semibold leading-tight text-balance text-foreground">
             {post.title}
-          </Link>
-        </h2>
-        <p className="mt-3 line-clamp-2 text-sm leading-6 text-muted">
-          {post.subtitle}
-        </p>
-      </div>
+          </h2>
+          <p className="mt-3 max-w-2xl text-base leading-7 text-muted">
+            {post.subtitle}
+          </p>
+        </div>
+      </Link>
     </article>
   );
 }

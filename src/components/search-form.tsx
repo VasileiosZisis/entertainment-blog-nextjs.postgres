@@ -27,25 +27,27 @@ export function SearchForm({ defaultValue = "" }: SearchFormProps) {
 
   return (
     <form
-      className="mt-10 flex w-full max-w-xl items-center gap-2 border-b border-border pb-3"
+      className="mt-10 flex w-full max-w-3xl flex-col gap-3 border-y border-border py-4 sm:flex-row sm:items-center"
       role="search"
       onSubmit={onSubmit}
     >
-      <Search size={18} className="shrink-0 text-muted" aria-hidden="true" />
-      <label className="sr-only" htmlFor="post-search">
-        Search posts
-      </label>
-      <input
-        id="post-search"
-        type="search"
-        value={keyword}
-        onChange={(event) => setKeyword(event.target.value)}
-        placeholder="Search posts"
-        className="min-w-0 flex-1 bg-transparent text-base text-foreground outline-none placeholder:text-muted"
-      />
+      <div className="flex min-w-0 flex-1 items-center gap-3">
+        <Search size={18} className="shrink-0 text-muted" aria-hidden="true" />
+        <label className="sr-only" htmlFor="post-search">
+          Search posts
+        </label>
+        <input
+          id="post-search"
+          type="search"
+          value={keyword}
+          onChange={(event) => setKeyword(event.target.value)}
+          placeholder="Search by title or quick take"
+          className="min-w-0 flex-1 bg-transparent text-base text-foreground outline-none placeholder:text-muted"
+        />
+      </div>
       <button
         type="submit"
-        className="rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-colors hover:bg-accent"
+        className="inline-flex justify-center bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent"
       >
         Search
       </button>

@@ -3,7 +3,7 @@ import { CategoryPostsPage } from "@/features/posts/category-posts-page";
 
 export const metadata: Metadata = {
   title: "Anime",
-  description: "Quick and Honest anime posts.",
+  description: "Quick and Honest anime posts",
 };
 
 export default function AnimePage() {

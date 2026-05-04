@@ -26,13 +26,17 @@ export async function CategoryPostsPage({
   return (
     <PageShell
       eyebrow="Category"
-      title={details.title}
+      title={`${details.title} worth your time?`}
       description={details.description}
+      meta={`${data.totalPosts} ${category.label.toLowerCase()} post${
+        data.totalPosts === 1 ? "" : "s"
+      }`}
     >
       <section className="mt-14">
         <PostGrid
           posts={data.posts}
-          emptyMessage={`No ${category.label.toLowerCase()} posts found.`}
+          emptyTitle={`No ${category.label.toLowerCase()} posts yet`}
+          emptyMessage={`This category is still empty. New ${category.label.toLowerCase()} notes will show up here when they are published`}
         />
         <Pagination
           currentPage={data.currentPage}

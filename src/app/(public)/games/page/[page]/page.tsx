@@ -9,7 +9,7 @@ type Props = {
 
 export const metadata: Metadata = {
   title: "Games",
-  description: "Quick and Honest game posts.",
+  description: "Quick and Honest game posts",
 };
 
 export default async function GamesPaginatedPage({ params }: Props) {

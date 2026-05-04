@@ -3,7 +3,7 @@ import { CategoryPostsPage } from "@/features/posts/category-posts-page";
 
 export const metadata: Metadata = {
   title: "Books",
-  description: "Quick and Honest book posts.",
+  description: "Quick and Honest book posts",
 };
 
 export default function BooksPage() {

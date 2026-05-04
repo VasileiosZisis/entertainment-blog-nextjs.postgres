@@ -20,44 +20,50 @@ export function Pagination({
   return (
     <nav
       aria-label="Pagination"
-      className="mt-14 flex flex-wrap items-center gap-2 border-t border-border pt-8"
+      className="mt-14 flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between"
     >
-      {currentPage > 1 && (
-        <Link
-          href={getPageHref(currentPage - 1)}
-          className="rounded-full border border-border px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-foreground hover:text-foreground"
-        >
-          Previous
-        </Link>
-      )}
+      <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted">
+        Page {currentPage} / {totalPages}
+      </p>
 
-      {pages.map((page) => {
-        const isActive = page === currentPage;
-
-        return (
+      <div className="flex flex-wrap items-center gap-2">
+        {currentPage > 1 && (
           <Link
-            key={page}
-            href={getPageHref(page)}
-            aria-current={isActive ? "page" : undefined}
-            className={`inline-flex size-10 items-center justify-center rounded-full text-sm font-medium transition-colors ${
-              isActive
-                ? "bg-foreground text-background"
-                : "border border-border text-muted hover:border-foreground hover:text-foreground"
-            }`}
+            href={getPageHref(currentPage - 1)}
+            className="border border-border px-4 py-2 text-sm font-semibold text-muted transition-colors hover:border-foreground hover:text-foreground"
           >
-            {page}
+            Previous
           </Link>
-        );
-      })}
+        )}
 
-      {currentPage < totalPages && (
-        <Link
-          href={getPageHref(currentPage + 1)}
-          className="rounded-full border border-border px-4 py-2 text-sm font-medium text-muted transition-colors hover:border-foreground hover:text-foreground"
-        >
-          Next
-        </Link>
-      )}
+        {pages.map((page) => {
+          const isActive = page === currentPage;
+
+          return (
+            <Link
+              key={page}
+              href={getPageHref(page)}
+              aria-current={isActive ? "page" : undefined}
+              className={`inline-flex size-10 items-center justify-center text-sm font-semibold transition-colors ${
+                isActive
+                  ? "bg-foreground text-background"
+                  : "border border-border text-muted hover:border-foreground hover:text-foreground"
+              }`}
+            >
+              {page}
+            </Link>
+          );
+        })}
+
+        {currentPage < totalPages && (
+          <Link
+            href={getPageHref(currentPage + 1)}
+            className="border border-border px-4 py-2 text-sm font-semibold text-muted transition-colors hover:border-foreground hover:text-foreground"
+          >
+            Next
+          </Link>
+        )}
+      </div>
     </nav>
   );
 }

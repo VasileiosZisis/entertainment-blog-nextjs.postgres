@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `Search: ${decodedKeyword}`,
-    description: `Search results for ${decodedKeyword} on Quick and Honest.`,
+    description: `Search results for ${decodedKeyword} on Quick and Honest`,
   };
 }
 

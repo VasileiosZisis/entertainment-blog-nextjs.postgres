@@ -3,23 +3,30 @@ import type { PostListItem } from "@/features/posts/types";
 
 type PostGridProps = {
   posts: PostListItem[];
+  emptyTitle?: string;
   emptyMessage?: string;
 };
 
 export function PostGrid({
   posts,
-  emptyMessage = "No posts found.",
+  emptyTitle = "No posts yet",
+  emptyMessage = "There is nothing to scan here right now",
 }: PostGridProps) {
   if (posts.length === 0) {
     return (
-      <div className="border-t border-border pt-8">
-        <p className="text-sm text-muted">{emptyMessage}</p>
+      <div className="border-y border-border py-10">
+        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-accent">
+          {emptyTitle}
+        </p>
+        <p className="mt-4 max-w-xl text-base leading-7 text-muted">
+          {emptyMessage}
+        </p>
       </div>
     );
   }
 
   return (
-    <div className="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid">
       {posts.map((post, index) => (
         <PostCard key={post.id} post={post} priority={index < 3} />
       ))}

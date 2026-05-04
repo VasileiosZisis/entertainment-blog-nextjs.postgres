@@ -28,14 +28,19 @@ export async function SearchResultsPage({
   return (
     <PageShell
       eyebrow="Search"
-      title={`Search: ${keyword}`}
+      title={`Search for ${keyword}`}
       description={`${data.totalPosts} result${
         data.totalPosts === 1 ? "" : "s"
-      } found across Quick and Honest posts.`}
+      } found across Quick and Honest posts`}
+      meta="Search checks titles and short takes"
     >
       <SearchForm defaultValue={keyword} />
       <section className="mt-14">
-        <PostGrid posts={data.posts} emptyMessage="No matching posts found." />
+        <PostGrid
+          posts={data.posts}
+          emptyTitle="No matching posts"
+          emptyMessage="Try a title, category, or a shorter phrase"
+        />
         <Pagination
           currentPage={data.currentPage}
           totalPages={data.totalPages}
