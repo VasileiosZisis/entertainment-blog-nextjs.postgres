@@ -30,7 +30,7 @@ The design language is based on the portfolio tone:
 
 The homepage now defines these reusable patterns:
 
-- Full-viewport hero with a real content image as the visual anchor.
+- Full-viewport hero with a custom Cloudinary entertainment-workspace image as the visual anchor.
 - Brand-first hierarchy with `Quick and Honest` as the loudest first-screen text.
 - Compact latest-entry index inside the hero.
 - Featured category grid instead of a generic blog card grid.
