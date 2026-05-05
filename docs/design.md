@@ -1,6 +1,6 @@
 # Design Notes
 
-This document tracks the visual direction for the public redesign.
+This document tracks the visual direction for the public site and private admin workspace.
 
 ## Design Milestone 1: Homepage
 
@@ -33,7 +33,7 @@ The homepage now defines these reusable patterns:
 - Full-viewport hero with a real content image as the visual anchor.
 - Brand-first hierarchy with `Quick and Honest` as the loudest first-screen text.
 - Compact latest-entry index inside the hero.
-- Category rail instead of a generic card grid.
+- Featured category grid instead of a generic blog card grid.
 - Currently section presented as a centered intro with an infinite carousel.
 - Article previews grouped by category, with up to two latest posts per category.
 
@@ -74,11 +74,11 @@ Future pages should reuse these motion rules instead of adding unrelated animati
 
 ## Rules For Future Pages
 
-- Prefer category lanes, rails, and structured sections over generic blog cards.
+- Prefer category lanes, structured sections, and full-width rows over generic blog cards.
 - Use images as content, not decoration.
 - Keep cards rare; use borders, spacing, and layout first.
 - Keep copy short, casual, and useful.
-- Use the homepage category rail and post row language when redesigning `/blog` and category pages.
+- Use the homepage featured category section and post row language when redesigning `/blog` and category pages.
 - Article pages should inherit the same type scale, image treatment, and direct editorial tone.
 - Mobile layouts should preserve the same hierarchy rather than collapsing into a generic feed.
 
@@ -174,3 +174,22 @@ Admin patterns:
 - Use more obvious input boxes for email, password, post, and upcoming forms.
 - Keep rich text controls rectangular and tool-like, with active states that are easy to see.
 - Avoid marketing language, decorative cards, and unnecessary motion in admin screens.
+
+## Design Milestone 6: Final Responsive QA And Docs Alignment
+
+Status: complete.
+
+Scope:
+
+- Check the implemented homepage, archives, article page, utility pages, and admin screens across mobile, tablet, and desktop.
+- Fix only small inconsistencies, stale copy, spacing issues, responsive issues, or visual mismatches.
+- Keep the design direction unchanged.
+- Keep `docs/design.md` aligned with the actual implementation.
+- Do not create a screenshot-based review report.
+
+QA notes:
+
+- Public and admin pages should avoid horizontal overflow at common mobile, tablet, and desktop widths.
+- Interactive links and buttons should keep accessible text or labels.
+- The shared page shell, post rows, pagination, search, forms, and admin controls should keep the same rectangular, restrained visual language.
+- Documentation should describe the built design, not older milestone wording.

@@ -39,7 +39,7 @@ export function PageShell({
         <section className="mt-14 border-t border-border pt-8">
           <p className="max-w-2xl text-sm leading-6 text-muted">
             This page shell is ready. Database-backed lists and article content
-            are scheduled for Milestone 4.
+            can be added when the page needs them
           </p>
         </section>
       )}
