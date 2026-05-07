@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Geist, Geist_Mono } from "next/font/google";
 import {
+  GOOGLE_ANALYTICS_ID,
   getAbsoluteUrl,
   SITE_DESCRIPTION,
   SITE_NAME,
@@ -50,6 +52,9 @@ export default function RootLayout({
       <body className="min-h-full bg-background text-foreground">
         {children}
       </body>
+      {process.env.NODE_ENV === "production" ? (
+        <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} />
+      ) : null}
     </html>
   );
 }

@@ -8,6 +8,9 @@ export const SITE_URL =
 
 export const SITE_ORIGIN = new URL(SITE_URL).origin;
 
+export const GOOGLE_ANALYTICS_ID =
+  process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID ?? "G-MYB663Q6FK";
+
 export function getAbsoluteUrl(path = "/") {
   return new URL(path, SITE_ORIGIN).toString();
 }

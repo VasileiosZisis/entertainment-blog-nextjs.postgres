@@ -47,6 +47,7 @@ The private admin area is intentionally minimal. It includes:
 - **Database host:** Neon
 - **Authentication:** Cookie-based JWT sessions, bcrypt password hashing
 - **Images:** Cloudinary
+- **Analytics:** Google Analytics 4
 - **Editor:** TipTap loaded client-side
 - **Validation:** Zod
 - **Icons:** Lucide React
@@ -123,6 +124,7 @@ CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
 CLOUDINARY_SECRET=
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-MYB663Q6FK
 ```
 
 Run migrations and seed the database:
@@ -179,6 +181,7 @@ Set the same required environment variables in Vercel, with:
 
 ```text
 NEXT_PUBLIC_SITE_URL=https://www.quickandhonest.com
+NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-MYB663Q6FK
 ```
 
 The build command is:
