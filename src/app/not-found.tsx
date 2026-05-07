@@ -1,9 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getPageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = {
+  ...getPageMetadata({
+    title: "Page not found",
+    description: "Nothing to read here",
+    path: "/404",
+    noIndex: true,
+  }),
   title: "Page not found",
-  description: "Nothing to read here",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function NotFound() {

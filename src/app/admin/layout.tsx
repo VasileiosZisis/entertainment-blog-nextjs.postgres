@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { BookOpenText, Clock3, LayoutDashboard, LogOut } from "lucide-react";
 import { logoutAction } from "@/features/auth/actions";
 import { getCurrentUser } from "@/lib/auth/session";
+
+export const metadata: Metadata = {
+  title: "Admin",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 const adminNavItems = [
   {

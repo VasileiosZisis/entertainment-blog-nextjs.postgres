@@ -6,7 +6,7 @@ import { RichText } from "@/components/rich-text";
 import { getCategoryLabel, getCategoryPath } from "@/features/posts/categories";
 import { formatPostDate } from "@/features/posts/format";
 import { getAllPostSlugs, getPostBySlug } from "@/features/posts/queries";
-import { SITE_NAME } from "@/lib/site";
+import { getArticleMetadata } from "@/lib/site";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -27,26 +27,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) {
     return {
       title: "Post not found",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
-  return {
+  return getArticleMetadata({
     title: post.title,
-    description: `${post.title}. ${post.subtitle}`,
-    openGraph: {
-      title: `${post.title} | ${SITE_NAME}`,
-      description: post.subtitle,
-      type: "article",
-      publishedTime: post.createdAt.toISOString(),
-      modifiedTime: post.updatedAt.toISOString(),
-      images: [
-        {
-          url: post.imageUrl,
-          alt: post.imageAlt,
-        },
-      ],
+    description: post.subtitle,
+    path: `/blog/${post.slug}`,
+    image: {
+      url: post.imageUrl,
+      alt: post.imageAlt,
     },
-  };
+    publishedTime: post.createdAt.toISOString(),
+    modifiedTime: post.updatedAt.toISOString(),
+  });
 }
 
 export default async function BlogPostPage({ params }: Props) {

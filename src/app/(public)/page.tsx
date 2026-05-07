@@ -15,12 +15,22 @@ import {
   CATEGORY_DETAILS,
   LATEST_POSTS_LIMIT,
   PUBLIC_NAV_ITEMS,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_OG_IMAGE,
+  getPageMetadata,
 } from "@/lib/site";
 
 type UpcomingItem = Awaited<ReturnType<typeof getUpcomingCards>>[number];
 
-const HERO_BACKGROUND_IMAGE =
-  "https://res.cloudinary.com/dmdbza74n/image/upload/v1778011989/quick-and-honest/Cozy_study_with_gaming_and_reading_vibes_fbwbej.png";
+export const metadata = getPageMetadata({
+  title: SITE_NAME,
+  description: SITE_DESCRIPTION,
+  path: "/",
+  absoluteTitle: true,
+});
+
+const HERO_BACKGROUND_IMAGE = SITE_OG_IMAGE;
 
 function HeroEntry({ post }: { post: PostListItem }) {
   return (

@@ -3,8 +3,15 @@ import { redirect } from "next/navigation";
 import { PageShell } from "@/components/page-shell";
 import { LoginForm } from "@/components/login-form";
 import { getCurrentUser } from "@/lib/auth/session";
+import { getPageMetadata } from "@/lib/site";
 
 export const metadata: Metadata = {
+  ...getPageMetadata({
+    title: "Login",
+    description: "Private admin login for Quick and Honest",
+    path: "/login",
+    noIndex: true,
+  }),
   title: "Login",
   robots: {
     index: false,

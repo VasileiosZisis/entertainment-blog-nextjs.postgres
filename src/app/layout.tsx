@@ -3,7 +3,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Geist, Geist_Mono } from "next/font/google";
 import {
   GOOGLE_ANALYTICS_ID,
-  getAbsoluteUrl,
+  SITE_OG_IMAGE,
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_ORIGIN,
@@ -27,15 +27,23 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
-  alternates: {
-    canonical: getAbsoluteUrl("/"),
-  },
   openGraph: {
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    url: getAbsoluteUrl("/"),
     siteName: SITE_NAME,
     type: "website",
+    images: [
+      {
+        url: SITE_OG_IMAGE,
+        alt: "Quick and Honest entertainment workspace",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    images: [SITE_OG_IMAGE],
   },
 };
 
