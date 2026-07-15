@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 type LoginPageProps = {
   searchParams: Promise<{
     next?: string | string[];
+    demo?: string | string[];
   }>;
 };
 
@@ -36,8 +37,13 @@ function getSafeAdminRedirect(next: string | string[] | undefined) {
 }
 
 export default async function LoginPage({ searchParams }: LoginPageProps) {
-  const [{ next }, user] = await Promise.all([searchParams, getCurrentUser()]);
+  const [{ next, demo }, user] = await Promise.all([
+    searchParams,
+    getCurrentUser(),
+  ]);
   const redirectTo = getSafeAdminRedirect(next);
+  const demoUnavailable =
+    (Array.isArray(demo) ? demo[0] : demo) === "unavailable";
 
   if (user) {
     redirect(redirectTo ?? "/admin");
@@ -50,6 +56,14 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       description="Sign in to manage Quick and Honest content"
       meta="Private admin area"
     >
+      {demoUnavailable ? (
+        <p
+          className="mt-10 w-full max-w-md border-l-2 border-accent bg-background/80 px-4 py-3 text-sm font-semibold text-foreground"
+          role="alert"
+        >
+          The admin demo is temporarily unavailable. Please try again later.
+        </p>
+      ) : null}
       <LoginForm redirectTo={redirectTo} />
     </PageShell>
   );

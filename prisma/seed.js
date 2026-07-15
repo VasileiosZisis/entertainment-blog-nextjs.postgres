@@ -1,6 +1,8 @@
 import "dotenv/config";
 
+import { randomUUID } from "node:crypto";
 import bcrypt from "bcryptjs";
+import { DEMO_ADMIN_EMAIL } from "../src/lib/auth/constants.ts";
 
 const posts = [
   {
@@ -164,6 +166,7 @@ async function getPrismaClient() {
 async function main() {
   const prisma = await getPrismaClient();
   const passwordHash = await bcrypt.hash(requireEnv("ADMIN_PASSWORD"), 12);
+  const demoPasswordHash = await bcrypt.hash(randomUUID(), 12);
 
   await prisma.user.upsert({
     where: { email: requireEnv("ADMIN_EMAIL") },
@@ -171,12 +174,31 @@ async function main() {
       name: requireEnv("ADMIN_NAME"),
       passwordHash,
       isAdmin: true,
+      isDemo: false,
     },
     create: {
       name: requireEnv("ADMIN_NAME"),
       email: requireEnv("ADMIN_EMAIL"),
       passwordHash,
       isAdmin: true,
+      isDemo: false,
+    },
+  });
+
+  await prisma.user.upsert({
+    where: { email: DEMO_ADMIN_EMAIL },
+    update: {
+      name: "Demo Admin",
+      passwordHash: demoPasswordHash,
+      isAdmin: true,
+      isDemo: true,
+    },
+    create: {
+      name: "Demo Admin",
+      email: DEMO_ADMIN_EMAIL,
+      passwordHash: demoPasswordHash,
+      isAdmin: true,
+      isDemo: true,
     },
   });
 

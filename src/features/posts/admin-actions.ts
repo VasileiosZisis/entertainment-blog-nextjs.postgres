@@ -14,14 +14,14 @@ import {
   deleteCloudinaryImage,
   uploadBlogImage,
 } from "@/lib/cloudinary/images";
-import { getCurrentUser } from "@/lib/auth/session";
+import { requireWritableAdmin } from "@/lib/auth/session";
 import { prisma } from "@/lib/db/prisma";
 
 export async function createPostAction(
   _previousState: PostFormState,
   formData: FormData,
 ): Promise<PostFormState> {
-  await requireAdmin();
+  await requireWritableAdmin();
 
   const fields = getPostFields(formData);
   const image = getPostImageFile(formData);
@@ -91,7 +91,7 @@ export async function updatePostAction(
   _previousState: PostFormState,
   formData: FormData,
 ): Promise<PostFormState> {
-  await requireAdmin();
+  await requireWritableAdmin();
 
   const id = String(formData.get("id") ?? "");
   const fields = getPostFields(formData);
@@ -182,7 +182,7 @@ export async function updatePostAction(
 }
 
 export async function deletePostAction(formData: FormData) {
-  await requireAdmin();
+  await requireWritableAdmin();
 
   const id = String(formData.get("id") ?? "");
 
@@ -215,16 +215,6 @@ export async function deletePostAction(formData: FormData) {
   });
 
   redirect("/admin/posts");
-}
-
-async function requireAdmin() {
-  const user = await getCurrentUser();
-
-  if (!user?.isAdmin) {
-    redirect("/login");
-  }
-
-  return user;
 }
 
 function revalidatePostPaths({

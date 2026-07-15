@@ -12,14 +12,14 @@ import {
   deleteCloudinaryImage,
   uploadUpcomingImage,
 } from "@/lib/cloudinary/images";
-import { getCurrentUser } from "@/lib/auth/session";
+import { requireWritableAdmin } from "@/lib/auth/session";
 import { prisma } from "@/lib/db/prisma";
 
 export async function createUpcomingAction(
   _previousState: UpcomingFormState,
   formData: FormData,
 ): Promise<UpcomingFormState> {
-  await requireAdmin();
+  await requireWritableAdmin();
 
   const fields = getUpcomingFields(formData);
   const image = getUpcomingImageFile(formData);
@@ -73,7 +73,7 @@ export async function createUpcomingAction(
 }
 
 export async function deleteUpcomingAction(formData: FormData) {
-  await requireAdmin();
+  await requireWritableAdmin();
 
   const id = String(formData.get("id") ?? "");
 
@@ -101,16 +101,6 @@ export async function deleteUpcomingAction(formData: FormData) {
   revalidateUpcomingPaths();
 
   redirect("/admin/upcoming");
-}
-
-async function requireAdmin() {
-  const user = await getCurrentUser();
-
-  if (!user?.isAdmin) {
-    redirect("/login");
-  }
-
-  return user;
 }
 
 function revalidateUpcomingPaths() {

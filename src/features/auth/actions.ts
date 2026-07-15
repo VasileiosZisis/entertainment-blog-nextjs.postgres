@@ -7,6 +7,7 @@ import {
   setAuthCookie,
   signAuthToken,
 } from "@/lib/auth/session";
+import { DEMO_ADMIN_EMAIL } from "@/lib/auth/constants";
 import { prisma } from "@/lib/db/prisma";
 
 export type LoginActionState = {
@@ -65,4 +66,29 @@ export async function loginAction(
 export async function logoutAction() {
   await clearAuthCookie();
   redirect("/login");
+}
+
+export async function startDemoSessionAction() {
+  const user = await prisma.user.findUnique({
+    where: {
+      email: DEMO_ADMIN_EMAIL,
+    },
+    select: {
+      id: true,
+      isAdmin: true,
+      isDemo: true,
+    },
+  });
+
+  if (!user?.isAdmin || !user.isDemo) {
+    redirect("/login?demo=unavailable");
+  }
+
+  const token = await signAuthToken({
+    userId: user.id,
+    isAdmin: user.isAdmin,
+  });
+
+  await setAuthCookie(token);
+  redirect("/admin");
 }

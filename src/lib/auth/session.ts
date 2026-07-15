@@ -1,7 +1,12 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { cache } from "react";
-import { AUTH_COOKIE_MAX_AGE_SECONDS, AUTH_COOKIE_NAME } from "./constants";
+import {
+  AUTH_COOKIE_MAX_AGE_SECONDS,
+  AUTH_COOKIE_NAME,
+  DEMO_MODE_MESSAGE,
+} from "./constants";
 import { prisma } from "@/lib/db/prisma";
 
 export type AuthTokenPayload = {
@@ -95,6 +100,21 @@ export const getCurrentUser = cache(async () => {
       name: true,
       email: true,
       isAdmin: true,
+      isDemo: true,
     },
   });
 });
+
+export async function requireWritableAdmin() {
+  const user = await getCurrentUser();
+
+  if (!user?.isAdmin) {
+    redirect("/login");
+  }
+
+  if (user.isDemo) {
+    throw new Error(DEMO_MODE_MESSAGE);
+  }
+
+  return user;
+}

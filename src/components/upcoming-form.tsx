@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { Plus } from "lucide-react";
+import { useAdminDemoMode } from "@/components/admin-demo-mode";
 import { createUpcomingAction } from "@/features/upcoming/admin-actions";
 import {
   ALLOWED_UPCOMING_IMAGE_TYPES,
@@ -16,13 +17,23 @@ import {
 const initialState: UpcomingFormState = {};
 
 export function UpcomingForm() {
+  const { isDemo, showDemoNotice } = useAdminDemoMode();
   const [state, formAction, isPending] = useActionState(
     createUpcomingAction,
     initialState,
   );
 
   return (
-    <form action={formAction} className="space-y-6">
+    <form
+      action={formAction}
+      className="space-y-6"
+      onSubmit={(event) => {
+        if (isDemo) {
+          event.preventDefault();
+          showDemoNotice();
+        }
+      }}
+    >
       <FormError errors={state.errors?.form} />
 
       <Field label="Type" name="kind" errors={state.errors?.kind}>
@@ -30,6 +41,7 @@ export function UpcomingForm() {
           id="kind"
           name="kind"
           required
+          disabled={isDemo}
           className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
         >
           {UPCOMING_KIND_OPTIONS.map((kind) => (
@@ -47,6 +59,7 @@ export function UpcomingForm() {
           type="text"
           required
           maxLength={120}
+          disabled={isDemo}
           className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
         />
       </Field>
@@ -58,6 +71,7 @@ export function UpcomingForm() {
           type="file"
           accept={ALLOWED_UPCOMING_IMAGE_TYPES.join(",")}
           required
+          disabled={isDemo}
           className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-sm text-foreground file:mr-4 file:border-0 file:bg-foreground file:px-4 file:py-2 file:text-sm file:font-semibold file:text-background"
         />
         <p className="mt-2 text-xs text-muted">
@@ -76,6 +90,7 @@ export function UpcomingForm() {
           type="text"
           required
           maxLength={180}
+          disabled={isDemo}
           className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
         />
       </Field>
@@ -83,6 +98,7 @@ export function UpcomingForm() {
       <button
         type="submit"
         disabled={isPending}
+        aria-describedby={isDemo ? "demo-mode-banner" : undefined}
         className="inline-flex items-center justify-center gap-2 bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent disabled:cursor-not-allowed disabled:opacity-60"
       >
         <Plus size={16} aria-hidden="true" />

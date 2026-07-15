@@ -10,6 +10,7 @@ The project is intentionally small in product scope, but it is built like a prod
 - Prisma 7 with PostgreSQL, currently targeting Neon
 - Server-rendered public content pages backed by database queries
 - Cookie-based JWT admin authentication with bcrypt password hashing
+- One-click, read-only public admin demo with server-enforced write protection
 - Admin CRUD workflows for posts and homepage queue cards
 - Cloudinary upload and cleanup integration for content images
 - Sanitized rich text editing and rendering with TipTap and `sanitize-html`
@@ -32,6 +33,7 @@ The public site is the reader-facing blog. It includes:
 The private admin area is intentionally minimal. It includes:
 
 - `/login` for the site owner
+- A public **Admin demo** entry in the site header for passwordless, read-only access
 - `/admin` dashboard with publishing stats
 - Post create/edit/delete workflows
 - Upcoming-card create/delete workflows

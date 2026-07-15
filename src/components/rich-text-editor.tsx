@@ -23,10 +23,13 @@ import {
   Strikethrough,
   Underline as UnderlineIcon,
 } from "lucide-react";
+import { useEffect } from "react";
 
 type RichTextEditorProps = {
   value: string;
   onChange: (value: string) => void;
+  readOnly?: boolean;
+  onReadOnlyAction?: () => void;
 };
 
 const editorExtensions = [
@@ -48,10 +51,16 @@ const editorExtensions = [
   }),
 ];
 
-export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
+export function RichTextEditor({
+  value,
+  onChange,
+  readOnly = false,
+  onReadOnlyAction,
+}: RichTextEditorProps) {
   const editor = useEditor({
     extensions: editorExtensions,
     content: value,
+    editable: !readOnly,
     immediatelyRender: false,
     editorProps: {
       attributes: {
@@ -64,6 +73,10 @@ export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
     },
   });
 
+  useEffect(() => {
+    editor?.setEditable(!readOnly);
+  }, [editor, readOnly]);
+
   if (!editor) {
     return (
       <div className="min-h-64 border border-border bg-background/80 px-4 py-3 text-sm text-muted">
@@ -74,7 +87,25 @@ export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2 border border-b-0 border-border bg-background/70 p-2">
+      <div
+        aria-describedby={readOnly ? "demo-mode-banner" : undefined}
+        aria-label="Rich text formatting"
+        className={`flex flex-wrap gap-2 border border-b-0 border-border bg-background/70 p-2 ${
+          readOnly ? "opacity-65" : ""
+        }`}
+        role="toolbar"
+        onClickCapture={(event) => {
+          if (readOnly && event.target instanceof Element) {
+            const button = event.target.closest("button");
+
+            if (button) {
+              event.preventDefault();
+              event.stopPropagation();
+              onReadOnlyAction?.();
+            }
+          }
+        }}
+      >
         <ToolbarButton
           label="Paragraph"
           active={editor.isActive("paragraph")}

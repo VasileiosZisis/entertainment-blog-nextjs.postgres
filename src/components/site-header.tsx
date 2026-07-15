@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { DemoAdminEntry } from "@/components/demo-admin-entry";
 import { PUBLIC_NAV_ITEMS, SITE_NAME } from "@/lib/site";
 
 function isActivePath(pathname: string, href: string) {
@@ -45,6 +46,9 @@ export function SiteHeader() {
                 </li>
               );
             })}
+            <li>
+              <DemoAdminEntry variant="desktop" />
+            </li>
           </ul>
         </nav>
 
@@ -85,6 +89,12 @@ export function SiteHeader() {
                 </li>
               );
             })}
+            <li>
+              <DemoAdminEntry
+                variant="mobile"
+                onStart={() => setIsOpen(false)}
+              />
+            </li>
           </ul>
         </nav>
       </div>

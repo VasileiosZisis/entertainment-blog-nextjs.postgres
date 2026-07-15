@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useActionState, useState } from "react";
 import { Save } from "lucide-react";
+import { useAdminDemoMode } from "@/components/admin-demo-mode";
 import { BlogCategory } from "@/generated/prisma/enums";
 import {
   createPostAction,
@@ -62,6 +63,7 @@ const categoryOptions = [
 ] as const;
 
 export function PostForm({ mode, initialPost }: PostFormProps) {
+  const { isDemo, showDemoNotice } = useAdminDemoMode();
   const [content, setContent] = useState(initialPost?.content ?? "<p></p>");
   const [state, formAction, isPending] = useActionState(
     mode === "create" ? createPostAction : updatePostAction,
@@ -70,7 +72,16 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
   const imageRequired = mode === "create";
 
   return (
-    <form action={formAction} className="mt-10 max-w-5xl space-y-10">
+    <form
+      action={formAction}
+      className="mt-10 max-w-5xl space-y-10"
+      onSubmit={(event) => {
+        if (isDemo) {
+          event.preventDefault();
+          showDemoNotice();
+        }
+      }}
+    >
       {mode === "edit" && (
         <input type="hidden" name="id" value={initialPost.id} />
       )}
@@ -87,6 +98,7 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
             required
             maxLength={80}
             defaultValue={initialPost?.title}
+            disabled={isDemo}
             className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
           />
         </Field>
@@ -97,6 +109,7 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
             name="category"
             required
             defaultValue={initialPost?.category ?? BlogCategory.GAME}
+            disabled={isDemo}
             className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
           >
             {categoryOptions.map((category) => (
@@ -116,6 +129,7 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
           required
           maxLength={140}
           defaultValue={initialPost?.subtitle}
+          disabled={isDemo}
           className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
         />
       </Field>
@@ -129,7 +143,12 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
             Rich text is sanitized before it is stored
           </p>
         </div>
-        <RichTextEditor value={content} onChange={setContent} />
+        <RichTextEditor
+          value={content}
+          onChange={setContent}
+          readOnly={isDemo}
+          onReadOnlyAction={showDemoNotice}
+        />
         <FormError errors={state.errors?.content} />
       </div>
 
@@ -141,6 +160,7 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
             type="file"
             accept={ALLOWED_POST_IMAGE_TYPES.join(",")}
             required={imageRequired}
+            disabled={isDemo}
             className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-sm text-foreground file:mr-4 file:border-0 file:bg-foreground file:px-4 file:py-2 file:text-sm file:font-semibold file:text-background"
           />
           <p className="mt-2 text-xs text-muted">
@@ -160,6 +180,7 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
             required
             maxLength={180}
             defaultValue={initialPost?.imageAlt}
+            disabled={isDemo}
             className="mt-3 w-full border border-border bg-background/80 px-4 py-3 text-base text-foreground outline-none transition-colors focus:border-foreground focus:bg-background"
           />
         </Field>
@@ -185,6 +206,7 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
           type="checkbox"
           name="published"
           defaultChecked={initialPost?.published ?? true}
+          disabled={isDemo}
           className="size-4 accent-foreground"
         />
         Published
@@ -194,6 +216,7 @@ export function PostForm({ mode, initialPost }: PostFormProps) {
         <button
           type="submit"
           disabled={isPending}
+          aria-describedby={isDemo ? "demo-mode-banner" : undefined}
           className="inline-flex items-center justify-center gap-2 bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-accent disabled:cursor-not-allowed disabled:opacity-60"
         >
           <Save size={16} aria-hidden="true" />
