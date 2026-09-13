@@ -9,8 +9,6 @@ type PageShellProps = {
 export function PageShell({
   eyebrow,
   title,
-  description,
-  meta,
   children,
 }: PageShellProps) {
   return (
@@ -23,15 +21,6 @@ export function PageShell({
           <h1 className="mt-5 max-w-2xl text-5xl font-semibold leading-[0.98] text-balance text-foreground sm:text-6xl">
             {title}
           </h1>
-        </div>
-
-        <div className="max-w-2xl lg:pt-10">
-          <p className="text-lg leading-8 text-muted">{description}</p>
-          {meta ? (
-            <p className="mt-6 border-t border-border pt-4 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted">
-              {meta}
-            </p>
-          ) : null}
         </div>
       </section>
 
