@@ -1,10 +1,20 @@
 # Quick and Honest
 
-Quick and Honest is a personal entertainment blog built as a modern Next.js rewrite of an older MERN demo project. The site is designed around short, direct posts that help a reader decide whether a game, anime, book, or TV show is worth their time.
+Quick and Honest helps you decide what to play, watch, or read next. Browse short, direct posts about games, anime, books, and TV: what works, what does not, and whether it deserves your time.
 
-The project is intentionally small in product scope, but it is built like a production application: typed routes and data access, PostgreSQL persistence, authenticated admin tools, image upload flows, sanitized rich text content, and a documented design system.
+**[Visit the live site](https://www.quickandhonest.com)** · **[Explore the admin demo](https://www.quickandhonest.com/)**
+
+To enter the demo, open the site and select **Admin demo** in the header (or the navigation menu on mobile). No account or password is needed.
+
+The read-only demo lets you look behind the scenes at the dashboard, post editor, and homepage queue management. It makes the publishing tools available to visitors without risking changes to the live blog: creating, editing, and deleting content are blocked on the server.
+
+![Quick and Honest homepage with category navigation, the Admin demo button, and the latest posts](./docs/screenshots/homepage.png)
+
+_Screenshot captured from the live homepage on November 4, 2026. The deployed content and interface may change._
 
 ## What This Project Demonstrates
+
+This is a modern Next.js rewrite of an older MERN demo project. Its implementation includes typed routes and data access, PostgreSQL persistence, authenticated admin tools, image upload flows, sanitized rich text content, and a documented design system.
 
 - A full-stack Next.js App Router application using TypeScript
 - Prisma 7 with PostgreSQL, currently targeting Neon
@@ -146,18 +156,20 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Quality Checks
 
-Run the standard project gate:
+Run the standard static checks, formatting check, and production build:
 
 ```bash
 npm run check
 ```
 
-This runs:
+This runs the following commands in order:
 
-- `npm run lint`
-- `npm run typecheck`
-- `npm run format:check`
-- `npm run build`
+- `npm run lint` — checks code against the ESLint rules.
+- `npm run typecheck` — checks TypeScript types without emitting files.
+- `npm run format:check` — checks formatting with Prettier.
+- `npm run build` — generates the Prisma client and builds the Next.js app for production.
+
+These checks help catch code, type, formatting, and build errors. They are not automated behavioral tests and do not establish test coverage for reader or admin workflows. No automated unit, integration, or end-to-end test suite is currently configured; workflows such as search, login, publishing, and demo write protection still need manual verification.
 
 Other useful commands:
 
